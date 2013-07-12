@@ -39,7 +39,7 @@ Notes:
 * You need to have installed [XCode Command Line Tools](https://developer.apple.com/downloads/index.action?=command%20line%20tools), which are available as a separate, optional (and _much smaller_) download from XCode.
 
 ```sh
-bash -c "$(curl -fsSL https://raw.github.com/rushi/dotfiles/master/bin/dotfiles)" && source ~/.zshrc
+bash -c "$(curl -fsSl https://raw.github.com/rushi/dotfiles/master/install.sh)"
 ```
 
 ### Ubuntu
@@ -49,8 +49,7 @@ Notes:
 * If APT hasn't been updated or upgraded recently, it will probably be a few minutes before you see anything.
 
 ```sh
-sudo apt-get -qq update && sudo apt-get -qq upgrade && sudo apt-get -qq install curl && echo &&
-bash -c "$(curl -fsSL https://raw.github.com/rushi/dotfiles/master/bin/dotfiles)" && source ~/.zshrc
+bash -c "$(curl -fsSl https://raw.github.com/rushi/dotfiles/master/install.sh)"
 ```
 
 ## The "init" step
