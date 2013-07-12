@@ -19,4 +19,5 @@ function dotfiles() {
   ~/.dotfiles/bin/dotfiles "$@" && src
 }
 
-src
+# Not needed since I don't use bash
+# src
