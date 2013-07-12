@@ -1,0 +1,1 @@
+../libs/oh-my-zsh/templates/zshrc.zsh-template
