@@ -14,3 +14,27 @@ eval "$(lesspipe.sh)"
 # Start ScreenSaver. This will lock the screen if locking is enabled.
 alias ss="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
 
+alias pf="open -a 'Path Finder'"
+alias mysql="mysql --socket=/Applications/MAMP/tmp/mysql/mysql.sock"
+alias cpwd='pwd|xargs echo -n|pbcopy'
+
+function server_start() {
+    sudo sh /Applications/MAMP/bin/startApache.sh
+    sh /Applications/MAMP/bin/startMysql.sh
+}
+
+function server_stop() {
+    sudo sh /Applications/MAMP/bin/stop.sh
+}
+
+function log_php() {
+    tail -f /Applications/MAMP/logs/php_error.log
+}
+
+function log_apache() {
+    tail -f /Applications/MAMP/logs/apache_error_log
+}
+
+function log_access() {
+    tail -f /Applications/MAMP/logs/apache_access_log
+}

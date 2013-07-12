@@ -40,6 +40,16 @@ function md() {
   mkdir -p "$@" && cd "$@"
 }
 
+alias cls="clear"
+# alias ll="ls -lhG"
+alias cd..="cd .."
+alias where="type -all"
+alias mate="mate -r"
+alias sl='du -sh * | grep "M"'
+alias tree="tree -C"
+alias e='subl . &'
+
+
 # Fast directory switching
 _Z_NO_PROMPT_COMMAND=1
 _Z_DATA=~/.dotfiles/caches/.z

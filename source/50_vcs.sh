@@ -78,3 +78,29 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     alias gd='gdk'
   fi
 fi
+
+function svnstatus () {
+    templist=`svn status $*`
+    echo `echo $templist | grep '^?' | wc -l` unversioned files/directories
+    echo $templist | grep -v '^?'
+}
+
+function svnup () {
+    svn log --stop-on-copy -r HEAD:BASE $1
+    svn up $1
+}
+
+function svndiff () {
+    svn diff $* | /usr/local/Cellar/colordiff/1.0.9/bin/colordiff
+}
+
+function hgdiff () {
+    hg diff $* | /usr/local/Cellar/colordiff/1.0.9/bin/colordiff
+}
+
+function hgstatus() {
+    templist=`hg status $*`
+    echo `echo $templist | grep '^?' | wc -l` unversioned files/directories
+    echo $templist | grep -v '^?'
+}
+
