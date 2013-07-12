@@ -114,6 +114,7 @@ In addition to the aforementioned [dotfiles][dotfiles] script, there are a few o
 (and 10+ years of accumulated crap)
 
 ## License
+
 Copyright (c) 2012 "Cowboy" Ben Alman
 Licensed under the MIT license.
 <http://benalman.com/about/license/>
