@@ -1,11 +1,11 @@
 export PATH
 
 # nave init.
-if [[ "$(type -P nave)" ]]; then
+if [ "$(type nave)" ]; then
   nave_default="$(nave ls | awk '/^default/ {print $2}')"
-  if [[ "$nave_default" && "$(node --version 2>/dev/null)" != "v$nave_default" ]]; then
+  if [ "$nave_default" ] && [ "$(node --version 2>/dev/null)" != "v$nave_default" ]; then
     node_path=~/.nave/installed/$nave_default/bin
-    if [[ -d "$node_path" ]]; then
+    if [ -d "$node_path" ]; then
       PATH=$node_path:$(path_remove ~/.nave/installed/*/bin)
     fi
   fi
@@ -17,7 +17,7 @@ npm_globals=(grunt linken jshint uglify-js codestream)
 alias nave_stable='nave use default stable nave_stable_2 $(node --version 2>/dev/null); src'
 function nave_stable_2() {
   npm update -g npm
-  if [[ "$1" != "$(node --version 2>/dev/null)" ]]; then
+  if [ "$1" != "$(node --version 2>/dev/null)" ]; then
     echo "Node.js version updated to $1, installing Npm global modules."
     npm install -g ${npm_globals[*]}
   else
@@ -29,7 +29,7 @@ function nave_stable_2() {
 # is an actual release version!
 function npm_publish() {
   local version="$(node -pe 'require("./package.json").version' 2>/dev/null)"
-  if [[ "${version#v}" =~ [a-z] ]]; then
+  if [ "${version#v}" =~ [a-z] ]; then
     local branch="$(git branch | perl -ne '/^\* (.*)/ && print $1')"
     echo "Publishing dev version $version with --force --tag=$branch"
     npm publish --force --tag="$branch" "$@"
@@ -56,8 +56,8 @@ alias npm_owner_list='eachdir "npm owner ls 2>/dev/null | sort"'
 function npm_owner_add() {
   local users=
   local root="$(basename $(pwd))"
-  [[ $root == "gruntjs" ]] && users="cowboy tkellen"
-  if [[ -n "$users" ]]; then
+  [ $root == "gruntjs" ] && users="cowboy tkellen"
+  if [ -n "$users" ]; then
     eachdir "__npm_owner_add_each $users"
   fi
 }
@@ -65,7 +65,7 @@ function npm_owner_add() {
 function __npm_owner_add_each() {
   local owners
   owners="$(npm owner ls 2>/dev/null)"
-  [[ $? != 0 ]] && return
+  [ $? != 0 ] && return
   for user in $*; do
     echo $owners | grep -v $user >/dev/null && npm owner add $user
   done
@@ -94,7 +94,7 @@ function npm_latest() {
 PATH=$(path_remove ~/.dotfiles/libs/rbenv/bin):~/.dotfiles/libs/rbenv/bin
 PATH=$(path_remove ~/.dotfiles/libs/ruby-build/bin):~/.dotfiles/libs/ruby-build/bin
 
-if [[ "$(type -P rbenv)" && ! "$(type -t _rbenv)" ]]; then
+if [ "$(type rbenv)" ] && [ ! "$(type _rbenv)" ]; then
   eval "$(rbenv init -)"
 fi
 
