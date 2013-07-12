@@ -108,10 +108,10 @@ In addition to the aforementioned [dotfiles][dotfiles] script, there are a few o
 
 
 ## Inspiration
-<https://github.com/cowboy/dotfiles>
-<https://github.com/gf3/dotfiles>
-<https://github.com/mathiasbynens/dotfiles>
-(and 15+ years of accumulated crap)
+* <https://github.com/cowboy/dotfiles>
+* <https://github.com/gf3/dotfiles>
+* <https://github.com/mathiasbynens/dotfiles>
+(and 10+ years of accumulated crap)
 
 ## License
 Copyright (c) 2012 "Cowboy" Ben Alman
