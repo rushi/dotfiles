@@ -39,7 +39,7 @@ Notes:
 * You need to have installed [XCode Command Line Tools](https://developer.apple.com/downloads/index.action?=command%20line%20tools), which are available as a separate, optional (and _much smaller_) download from XCode.
 
 ```sh
-bash -c "$(curl -fsSL https://raw.github.com/rushi/dotfiles/master/bin/dotfiles)" && source ~/.bashrc
+bash -c "$(curl -fsSL https://raw.github.com/rushi/dotfiles/master/bin/dotfiles)" && source ~/.zshrc
 ```
 
 ### Ubuntu
@@ -50,7 +50,7 @@ Notes:
 
 ```sh
 sudo apt-get -qq update && sudo apt-get -qq upgrade && sudo apt-get -qq install curl && echo &&
-bash -c "$(curl -fsSL https://raw.github.com/rushi/dotfiles/master/bin/dotfiles)" && source ~/.bashrc
+bash -c "$(curl -fsSL https://raw.github.com/rushi/dotfiles/master/bin/dotfiles)" && source ~/.zshrc
 ```
 
 ## The "init" step
@@ -59,6 +59,7 @@ These things will be installed, but _only_ if they aren't already.
 ### OS X
 * Homebrew
   * git
+  * mercurial
   * tree
   * sl
   * lesspipe
@@ -79,13 +80,9 @@ These things will be installed, but _only_ if they aren't already.
   * nmap
   * telnet
   * htop
+  * zsh
 
 ### Both
-* Nave
-  * Npm (latest stable)
-    * Grunt
-    * JSHint
-    * Uglify-JS
 * Rbenv
   * Ruby 1.9.3-p194 (default)
   * Ruby 1.9.2-p290 (default)
@@ -101,43 +98,26 @@ Any file in the `copy` subdirectory will be copied into `~/`. Any file that _nee
 Any file in the `link` subdirectory gets symbolically linked with `ln -s` into `~/`. Edit these, and you change the file in the repo. Don't link files containing sensitive data, or you might accidentally commit that data!
 
 ## Aliases and Functions
-To keep things easy, the `~/.bashrc` and `~/.bash_profile` files are extremely simple, and should never need to be modified. Instead, add your aliases, functions, settings, etc into one of the files in the `source` subdirectory, or add a new file. They're all automatically sourced when a new shell is opened. Take a look, I have [a lot of aliases and functions](https://github.com/rushi/dotfiles/tree/master/source). I even have a [fancy prompt](https://github.com/cowboy/dotfiles/blob/master/source/50_prompt.sh) that shows the current directory, time and current git/svn repo status.
+Add your aliases, functions, settings, etc into one of the files in the `source` subdirectory, or add a new file. They're all automatically sourced when a new shell is opened. Take a look, I have [a lot of aliases and functions](https://github.com/rushi/dotfiles/tree/master/source).
 
 ## Scripts
 In addition to the aforementioned [dotfiles][dotfiles] script, there are a few other [bash scripts][bin]. This includes [ack](https://github.com/petdance/ack), which is a [git submodule](https://github.com/rushi/dotfiles/tree/master/libs).
 
 * [dotfiles][dotfiles] - (re)initialize dotfiles. It might ask for your password (for `sudo`).
-* [src](https://github.com/rushi/dotfiles/blob/master/link/.bashrc#L6-15) - (re)source all files in `source` directory
+* [src](https://github.com/rushi/dotfiles/blob/master/link/.zshrc#L53-70) - (re)source all files in `source` directory
 * Look through the [bin][bin] subdirectory for a few more.
 
-## Prompt
-I think [my bash prompt](https://github.com/rushi/dotfiles/blob/master/source/50_prompt.sh) is awesome. It shows git and svn repo status, a timestamp, error exit codes, and even changes color depending on how you've logged in.
-
-Git repos display as **[branch:flags]** where flags are:
-
-**?** untracked files  
-**!** changed (but unstaged) files  
-**+** staged files
-
-SVN repos display as **[rev1:rev2]** where rev1 and rev2 are:
-
-**rev1** last changed revision  
-**rev2** revision
-
-Check it out:
-
-![My awesome bash prompt](http://farm8.staticflickr.com/7142/6754488927_563dd73553_b.jpg)
 
 ## Inspiration
-<https://github.com/gf3/dotfiles>  
-<https://github.com/mathiasbynens/dotfiles>  
+<https://github.com/cowboy/dotfiles>
+<https://github.com/gf3/dotfiles>
+<https://github.com/mathiasbynens/dotfiles>
 (and 15+ years of accumulated crap)
 
 ## License
-Copyright (c) 2012 "Cowboy" Ben Alman  
-Licensed under the MIT license.  
+Copyright (c) 2012 "Cowboy" Ben Alman
+Licensed under the MIT license.
 <http://benalman.com/about/license/>
 
-Extended for Personal use by
-Rushi Vishavadia
+Extended for Personal use by Rushi Vishavadia.
 <http://rushi.vishavadia.com/>
