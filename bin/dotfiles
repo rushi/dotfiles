@@ -209,7 +209,7 @@ if [[ "$backup" ]]; then
 fi
 
 # Change the shell only if it's not zsh
-if [ ! $BASH ]; then
+if [ $BASH ]; then
   e_arrow "Changing Shells"
   export SHELL=`which zsh`
   sudo chsh -s `which zsh`
