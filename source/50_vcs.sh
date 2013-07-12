@@ -70,7 +70,7 @@ AWK
 for n in {1..5}; do alias gf$n="gf -n $n"; done
 
 # OSX-specific Git shortcuts
-if [ "$OSTYPE" =~ ^darwin ]; then
+if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias gdk='git ksdiff'
   alias gdkc='gdk --cached'
   alias gt='gittower -s'
