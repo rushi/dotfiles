@@ -208,18 +208,18 @@ if [[ "$backup" ]]; then
   echo -e "\nBackups were moved to ~/${backup_dir#$HOME/}"
 fi
 
-# Lest I forget to do a few additional things...
-if [[ "$new_dotfiles_install" && -e "conf/firsttime_reminder.sh" ]]; then
-  e_header "First-Time Reminders"
-  source "conf/firsttime_reminder.sh"
-fi
-
 # Change the shell only if it's not zsh
 if [ ! $BASH ]; then
   e_arrow "Changing Shells"
   export SHELL=`which zsh`
   sudo chsh -s `which zsh`
   /usr/bin/env zsh
+fi
+
+# Lest I forget to do a few additional things...
+if [[ "$new_dotfiles_install" && -e "conf/firsttime_reminder.sh" ]]; then
+  e_header "First-Time Reminders"
+  source "conf/firsttime_reminder.sh"
 fi
 
 source ~/.zshrc
