@@ -32,9 +32,6 @@ alias df="df -h"
 # Recursively delete `.DS_Store` files
 alias dsstore="find . -name '*.DS_Store' -type f -ls -delete"
 
-# Aliasing eachdir like this allows you to use aliases/functions as commands.
-alias eachdir=". eachdir"
-
 # Create a new directory and enter it
 function md() {
   mkdir -p "$@" && cd "$@"
@@ -47,7 +44,8 @@ alias mate="mate -r"
 alias sl='du -sh * | grep "M"'
 alias tree="tree -C"
 alias e='subl . &'
-
+export personal="$HOME/Sites/personal"
+export work="$HOME/Sites/work"
 
 # Fast directory switching
 _Z_NO_PROMPT_COMMAND=1
