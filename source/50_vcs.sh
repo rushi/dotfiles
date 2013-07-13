@@ -21,7 +21,6 @@ alias gco='gc'
 alias gcb='gc -b'
 alias gr='git remote'
 alias grv='gr -v'
-#alias gra='git remote add'
 alias grr='git remote rm'
 alias gcl='git clone'
 alias gcd='git rev-parse 2>/dev/null && cd "./$(git rev-parse --show-cdup)"'
@@ -71,7 +70,7 @@ for n in {1..5}; do alias gf$n="gf -n $n"; done
 
 # OSX-specific Git shortcuts
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  alias gdk='git ksdiff'
+  alias gdk='git diff'
   alias gdkc='gdk --cached'
   alias gt='gittower -s'
   if [ ! "$SSH_TTY" ]; then

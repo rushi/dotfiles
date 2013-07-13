@@ -171,6 +171,7 @@ if [[ ! -d ~/.dotfiles ]]; then
   # ~/.dotfiles doesn't exist? Clone it!
   e_header "Downloading dotfiles"
   git clone --recursive git://github.com/rushi/dotfiles.git ~/.dotfiles
+  e_header "Completed dotfiles download"
   cd ~/.dotfiles
 else
   # Make sure we have the latest files.
@@ -178,6 +179,7 @@ else
   cd ~/.dotfiles
   git pull
   git submodule update --init --recursive --quiet
+  e_header "Completed dotfiles update"
 fi
 
 # Utilities, helpers.
@@ -208,23 +210,24 @@ if [[ "$backup" ]]; then
   echo -e "\nBackups were moved to ~/${backup_dir#$HOME/}"
 fi
 
-# Change the shell only if it's not zsh
-if [ $BASH ]; then
-  e_arrow "Changing Shells"
-  export SHELL=`which zsh`
-  /usr/bin/env zsh
-  echo "Run the following to change your shell
-  chsh -s \`which zsh\`
-  sudo chsh -s \`which zsh\`"
-  echo "Also append `which zsh` to /etc/shells"
-else
-  e_error "Looks like you are already on ZSH? Shell: ${SHELL} Bash: ${BASH}"
-fi
-
 # Lest I forget to do a few additional things...
 if [[ "$new_dotfiles_install" && -e "conf/firsttime_reminder.sh" ]]; then
   e_header "First-Time Reminders"
   source "conf/firsttime_reminder.sh"
+fi
+
+# Change the shell only if it's not zsh
+if [ $BASH ]; then
+  e_arrow "Changing Shell to `which zsh`"
+  export SHELL=`which zsh`
+  chsh -s `which zsh`
+  echo "If your default shell didn't change, run the following:
+  chsh -s \`which zsh\`
+  sudo chsh -s \`which zsh\`"
+  echo "Also append `which zsh` to /etc/shells"
+  /usr/bin/env zsh
+else
+  e_error "Looks like you are already on ZSH? Shell: ${SHELL} Bash: ${BASH}"
 fi
 
 source ~/.zshrc
