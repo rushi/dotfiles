@@ -43,6 +43,7 @@ packages=(
   nmap telnet
   htop
   zsh
+  vim
 )
 
 list=()
