@@ -225,11 +225,11 @@ if [[ ! $SHELL =~ zsh ]]; then
   chsh -s \`which zsh\`
   sudo chsh -s \`which zsh\`"
   echo "Also append `which zsh` to /etc/shells"
-  /usr/bin/env zsh
 else
   e_error "Looks like you are already on ZSH? Shell: ${SHELL} Bash: ${BASH}"
 fi
 
+/usr/bin/env zsh
 source ~/.zshrc
 
 # All done!
