@@ -216,6 +216,7 @@ if [ $BASH ]; then
   echo "Run the following to change your shell
   chsh -s \`which zsh\`
   sudo chsh -s \`which zsh\`"
+  echo "Also append `which zsh` to /etc/shells"
 else
   e_error "Looks like you are already on ZSH? Shell: ${SHELL} Bash: ${BASH}"
 fi
