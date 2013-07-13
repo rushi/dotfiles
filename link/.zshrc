@@ -46,10 +46,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-# Add binaries into the path
-PATH=~/.dotfiles/bin:$PATH
-export PATH
-
 # Source all files in ~/.dotfiles/source/
 function src() {
   local file

@@ -43,7 +43,6 @@ function md() {
 alias cls="clear"
 # alias ll="ls -lhG"
 alias cd..="cd .."
-alias where="type -all"
 alias mate="mate -r"
 alias sl='du -sh * | grep "M"'
 alias tree="tree -C"
