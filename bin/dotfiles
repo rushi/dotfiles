@@ -217,8 +217,8 @@ if [[ "$new_dotfiles_install" && -e "conf/firsttime_reminder.sh" ]]; then
 fi
 
 # Change the shell only if it's not zsh
-if [ $BASH ]; then
-  e_arrow "Changing Shell to `which zsh`"
+if [[ ! $SHELL =~ zsh ]]; then
+  e_arrow "Changing Shell from $BASH to `which zsh`"
   export SHELL=`which zsh`
   chsh -s `which zsh`
   echo "If your default shell didn't change, run the following:

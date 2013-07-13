@@ -4,11 +4,7 @@ source ~/.dotfiles/source/50_devel.sh
 # Add stuff here to Install Node.js.
 # since we cant use nave (its bash-only)
 
-# Load npm_globals, add the default node into the path, initialize rbenv.
-source ~/.dotfiles/source/50_devel.sh
-
 # Todo: Install Npm modules.
-
 
 # Install Ruby.
 if [[ "$(type rbenv)" ]]; then
