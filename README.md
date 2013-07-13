@@ -62,7 +62,6 @@ These things will be installed, but _only_ if they aren't already.
   * tree
   * sl
   * lesspipe
-  * id3tool
   * nmap
   * git-extras
   * htop-osx
@@ -75,7 +74,6 @@ These things will be installed, but _only_ if they aren't already.
   * git-core
   * tree
   * sl
-  * id3tool
   * nmap
   * telnet
   * htop
