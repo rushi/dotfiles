@@ -212,9 +212,12 @@ fi
 if [ $BASH ]; then
   e_arrow "Changing Shells"
   export SHELL=`which zsh`
-  chsh -s `which zsh`
-  sudo chsh -s `which zsh`
   /usr/bin/env zsh
+  echo "Run the following to change your shell
+  chsh -s \`which zsh\`
+  sudo chsh -s \`which zsh\`"
+else
+  e_error "Looks like you are already on ZSH? Shell: ${SHELL} Bash: ${BASH}"
 fi
 
 # Lest I forget to do a few additional things...
