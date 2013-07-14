@@ -11,7 +11,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     echo ''
     if [[ "$REPLY" =~ ^[Yy]$ ]]; then
         echo "Beginning install..."
-        bash -c "$(curl -fsSL https://raw.github.com/rushi/dotfiles/master/bin/dotfiles)"
+        bash -c "$(curl -fsSL https://raw.github.com/rushi/dotfiles/master/bin/dotfiles)" && source ~/.zshrc
     else
         echo "Aborted"
         exit 1
@@ -24,7 +24,7 @@ elif [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]]; then
     echo ''
     if [[ "$REPLY" =~ ^[Yy]$ ]]; then
         echo "Beginning install..."
-        sudo apt-get -qq update && sudo apt-get -qq upgrade && sudo apt-get -qq install curl && echo && bash -c "$(curl -fsSL https://raw.github.com/rushi/dotfiles/master/bin/dotfiles)"
+        sudo apt-get -qq update && sudo apt-get -qq upgrade && sudo apt-get -qq install curl && echo && bash -c "$(curl -fsSL https://raw.github.com/rushi/dotfiles/master/bin/dotfiles)" && source ~/.zshrc
     else
         echo "Aborted"
         exit 1
