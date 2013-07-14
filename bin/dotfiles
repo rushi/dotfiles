@@ -245,4 +245,4 @@ else
 fi
 
 # All done!
-e_header "All done, just source ~/.zshrc!"
+e_header "All done, just switch shells and source ~/.zshrc!"
