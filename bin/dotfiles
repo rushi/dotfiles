@@ -1,11 +1,20 @@
 #!/bin/bash
 
+# Logging stuff.
+function e_log()   { echo -e "\033[1m$@\033[0m"; }
+function e_header()   { echo -e "\n\033[1m$@\033[0m"; }
+function e_success()  { echo -e " \033[1;32m✔\033[0m  $@"; }
+function e_error()    { echo -e " \033[1;31m✖\033[0m  $@"; }
+function e_arrow()    { echo -e " \033[1;33m➜\033[0m  $@"; }
+
 echo 'Dotfiles - "Cowboy" Ben Alman - http://benalman.com/'
-echo '>> Updated by Rushi Vishavadia - http://rushi.vishavadia.com'
+echo '– Updated by Rushi Vishavadia - http://rushi.vishavadia.com'
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then cat <<HELP
 
 Usage: $(basename "$0")
+
+TODO: doc for 'basic' option
 
 See the README for documentation.
 https://github.com/rushi/dotfiles
@@ -13,14 +22,17 @@ https://github.com/rushi/dotfiles
 Copyright (c) 2012 "Cowboy" Ben Alman
 Licensed under the MIT license.
 http://benalman.com/about/license/
+Extended by Rushi Vishavadia
+http://rushi.vishavadia.com
 HELP
-exit; fi
-
-# Logging stuff.
-function e_header()   { echo -e "\n\033[1m$@\033[0m"; }
-function e_success()  { echo -e " \033[1;32m✔\033[0m  $@"; }
-function e_error()    { echo -e " \033[1;31m✖\033[0m  $@"; }
-function e_arrow()    { echo -e " \033[1;33m➜\033[0m  $@"; }
+exit
+elif [[ "$1" == "basic" ]]; then
+  # A basic install see above.
+  basic_install=1
+  e_header "Running a basic install"
+else
+  e_header "Running a full install"
+fi
 
 # Given a list of desired items and installed items, return a list
 # of uninstalled items. Arrays in bash are insane (not in a good way).
@@ -171,7 +183,7 @@ if [[ ! -d ~/.dotfiles ]]; then
   # ~/.dotfiles doesn't exist? Clone it!
   e_header "Downloading dotfiles"
   git clone --recursive git://github.com/rushi/dotfiles.git ~/.dotfiles
-  e_header "Completed dotfiles download"
+  e_log "Completed dotfiles download"
   cd ~/.dotfiles
 else
   # Make sure we have the latest files.
@@ -179,13 +191,14 @@ else
   cd ~/.dotfiles
   git pull
   git submodule update --init --recursive --quiet
-  e_header "Completed dotfiles update"
+  e_log "Completed dotfiles update"
 fi
 
 # Utilities, helpers.
 source ~/.dotfiles/source/10_misc.sh
 
 # Add binaries into the path
+PATH=$(path_remove ~/.dotfiles/bin):~/.dotfiles/bin
 PATH=~/.dotfiles/bin:$PATH
 export PATH
 
@@ -201,8 +214,10 @@ backup_dir="$HOME/.dotfiles/backups/$(date "+%Y_%m_%d-%H_%M_%S")/"
 backup=
 
 # Execute code for each file in these subdirectories.
-do_stuff "init"
-do_stuff "copy"
+if [[ ! "$basic_install" ]]; then
+  do_stuff "init"
+  do_stuff "copy"
+fi
 do_stuff "link"
 
 # Alert if backups were made.
@@ -229,8 +244,5 @@ else
   e_error "Looks like you are already on ZSH? Shell: ${SHELL} Bash: ${BASH}"
 fi
 
-/usr/bin/env zsh
-source ~/.zshrc
-
 # All done!
-e_header "All done!"
+e_header "All done, just switch shells and source ~/.zshrc!"
