@@ -4,3 +4,5 @@ link/.ssh/authorized_keys
 link/.ssh/id_*
 link/.ssh/known_hosts
 *LOCAL*
+# To be git linked sometime
+bin/composer*

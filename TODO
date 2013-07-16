@@ -1,4 +1,2 @@
 Need to add the following to my bin
-- quit
-- quicklook
-- curlish
+hg prompt http://sjl.bitbucket.org/hg-prompt
