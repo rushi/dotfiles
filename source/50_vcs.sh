@@ -19,16 +19,11 @@ alias gba='git branch -a'
 function gc() { git checkout "${@:-master}"; } # Checkout master by default
 alias gco='gc'
 alias gcb='gc -b'
-alias gr='git remote'
-alias grv='gr -v'
-alias grr='git remote rm'
 alias gcl='git clone'
-alias gcd='git rev-parse 2>/dev/null && cd "./$(git rev-parse --show-cdup)"'
+alias gdk='git diff'
 
-# Run commands in each subdirectory.
-alias gu-all='eachdir git pull'
-alias gp-all='eachdir git push'
-alias gs-all='eachdir git status'
+alias hcm='hg commit -m'
+alias hst='hg status'
 
 # open all changed files (that still actually exist) in the editor
 function ged() {
@@ -70,9 +65,7 @@ for n in {1..5}; do alias gf$n="gf -n $n"; done
 
 # OSX-specific Git shortcuts
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  alias gdk='git diff'
   alias gdkc='gdk --cached'
-  alias gt='gittower -s'
   if [ ! "$SSH_TTY" ]; then
     alias gd='gdk'
   fi

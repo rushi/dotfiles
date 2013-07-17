@@ -1,0 +1,29 @@
+[ui]
+username = Rushi Vishavadia <rushi.v@gmail.com>
+editor = vim
+commitsubrepos = False
+ignore = ~/.hgignore
+
+# Some useful little aliases.
+[alias]
+st = status -SC
+summ = summary
+fdiff = diff -U 10000000000000
+
+lg = log --graph
+
+# Commit message shortcuts.
+cm = commit -m
+cws = commit -m 'Whitespace.'
+
+[extensions]
+# sjl.bitbucket.org/hg-prompt
+prompt = ~/.dotfiles/libs/hg-prompt/prompt.py
+# http://mercurial.selenic.com/wiki/ProgressExtension
+progress = 
+# http://mercurial.selenic.com/wiki/FetchExtension
+fetch =
+# http://mercurial.selenic.com/wiki/ColorExtension
+color =
+# http://mercurial.selenic.com/wiki/RebaseExtension
+rebase =

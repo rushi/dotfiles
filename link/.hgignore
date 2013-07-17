@@ -1,0 +1,14 @@
+syntax: glob
+
+.DS_Store
+*.pyc
+.netrwhist
+*.swp
+*.swo
+config/bcvi
+*.un~
+*.sublime-*
+
+vim/tmp
+
+vim/spell
