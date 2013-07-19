@@ -33,21 +33,26 @@ alias df="df -h"
 alias dsstore="find . -name '*.DS_Store' -type f -ls -delete"
 
 # Create a new directory and enter it
-function md() {
+function mdcd() {
   mkdir -p "$@" && cd "$@"
 }
 
+function f() {
+  find . -iname "$@" -print
+}
+
 alias cls="clear"
-# alias ll="ls -lhG"
 alias cd..="cd .."
 alias mate="mate -r"
 alias sl='du -sh * | grep "M"'
 alias tree="tree -C"
 alias e='subl . &'
+
 export personal="$HOME/Sites/personal"
+export p="$personal" # personal is just so long to type
 export work="$HOME/Sites/work"
 
 # Fast directory switching
 #_Z_NO_PROMPT_COMMAND=1
-_Z_DATA=~/.dotfiles/caches/.z
+#_Z_DATA=~/.dotfiles/caches/.z
 . ~/.dotfiles/libs/z/z.sh
