@@ -53,6 +53,10 @@ export p="$personal" # personal is just so long to type
 export work="$HOME/Sites/work"
 
 # Fast directory switching
-#_Z_NO_PROMPT_COMMAND=1
-#_Z_DATA=~/.dotfiles/caches/.z
+## required for zsh only
+function precmd () {
+  _z --add "$(pwd -P)"
+}
+_Z_NO_PROMPT_COMMAND=1
+_Z_DATA=~/.dotfiles/caches/.z
 . ~/.dotfiles/libs/z/z.sh
