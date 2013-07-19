@@ -24,6 +24,9 @@ alias gdk='git diff'
 
 alias hcm='hg commit -m'
 alias hst='hg status'
+alias hgl='hg log'
+alias hgp='hg push'
+alias hgpu='hg pull'
 
 # open all changed files (that still actually exist) in the editor
 function ged() {

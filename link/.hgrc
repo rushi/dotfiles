@@ -10,6 +10,9 @@ st = status -SC
 summ = summary
 fdiff = diff -U 10000000000000
 
+bm = bookmark
+bms = bookmarks
+
 lg = log --graph
 
 # Commit message shortcuts.
@@ -27,3 +30,9 @@ fetch =
 color =
 # http://mercurial.selenic.com/wiki/RebaseExtension
 rebase =
+# http://mercurial.selenic.com/wiki/PagerExtension
+pager =
+
+[pager]
+pager = LESS='FRX' less
+ignore = version, help, update
