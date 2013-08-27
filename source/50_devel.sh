@@ -10,3 +10,6 @@ if [ "$(type rbenv)" ]; then
 fi
 
 alias py="python"
+
+# Symfony
+alias console='php app/console'
