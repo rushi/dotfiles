@@ -6,8 +6,9 @@ ignore = ~/.hgignore
 
 # Some useful little aliases.
 [alias]
-st = status -SC
+stam = status -am
 summ = summary
+su = summary
 fdiff = diff -U 10000000000000
 
 bm = bookmark
@@ -19,19 +20,25 @@ lg = log --graph
 cm = commit -m
 cws = commit -m 'Whitespace.'
 
+[extdiff]
+cmd.meld = /usr/bin/meld
+
 [extensions]
 # sjl.bitbucket.org/hg-prompt
 prompt = ~/.dotfiles/libs/hg-prompt/prompt.py
 # http://mercurial.selenic.com/wiki/ProgressExtension
 progress = 
-# http://mercurial.selenic.com/wiki/FetchExtension
-fetch =
 # http://mercurial.selenic.com/wiki/ColorExtension
 color =
 # http://mercurial.selenic.com/wiki/RebaseExtension
 rebase =
 # http://mercurial.selenic.com/wiki/PagerExtension
 pager =
+# http://mercurial.selenic.com/wiki/ExtdiffExtension
+hgext.extdiff = 
+# http://mercurial.selenic.com/wiki/GraphlogExtension
+graphlog =
+mq =
 
 [pager]
 pager = LESS='FRX' less

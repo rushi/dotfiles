@@ -1,17 +1,24 @@
 ;(function () {
 
-  /**
-   *  * Make all queries pretty print by default.
-   *   */
+    var host = db.serverStatus().host;
+    var prompt = function() { return db+"@"+host+"> "; }
 
-  DBQuery.prototype._prettyShell = true
+    /**
+     *  * Make all queries pretty print by default.
+     *   */
 
-  /**
-   *  * Allow opting into the default ugly print mode.
-   *   */
+    DBQuery.prototype._prettyShell = true
 
-  DBQuery.prototype.ugly = function () {
-      this._prettyShell = false;
+    /**
+     *  * Allow opting into the default ugly print mode.
+     *   */
+
+    DBQuery.prototype.ugly = function () {
+        this._prettyShell = false;
         return this
-  }
+    }
+    
+    DB.prototype.colls = function() {
+        return this.getCollectionNames();
+    }
 })();

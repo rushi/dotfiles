@@ -23,6 +23,5 @@ fea=.html,.js,.less,.css
 --type-set
 tpl=.tpl
 
---type-set
-twig=.twig
+--type-set=twig=.twig
 
