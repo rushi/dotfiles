@@ -12,3 +12,8 @@ config/bcvi
 vim/tmp
 
 vim/spell
+
+SpikeBundle/*
+
+syntax: regexp
+^cc$

@@ -1,5 +1,5 @@
 [ui]
-username = Rushi Vishavadia <rushi.v@gmail.com>
+username = Rushi Vishavadia <rushi@xola.com>
 editor = vim
 commitsubrepos = False
 ignore = ~/.hgignore
@@ -39,6 +39,9 @@ hgext.extdiff =
 # http://mercurial.selenic.com/wiki/GraphlogExtension
 graphlog =
 mq =
+purge =
+# http://mercurial.selenic.com/wiki/ConvertExtension
+convert =
 
 [pager]
 pager = LESS='FRX' less
