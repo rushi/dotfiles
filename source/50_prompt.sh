@@ -17,7 +17,7 @@ function prompt_char {
 
 function hg_prompt_info {
   hg prompt --angle-brackets "\
-< on %{$fg_bold[magenta]%}<branch>%{$reset_color%}>\
+< on %{$fg_bold[blue]%}<branch>%{$reset_color%}>\
 < %{$fg_bold[magenta]%}(<bookmark>)%{$reset_color%}>\
 < at %{$fg[yellow]%}<tags|%{$reset_color%}, %{$fg[yellow]%}>%{$reset_color%}>\
 %{$fg[green]%}<status|modified|unknown><update>%{$reset_color%}<

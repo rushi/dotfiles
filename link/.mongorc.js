@@ -1,24 +1,38 @@
 ;(function () {
 
-    var host = db.serverStatus().host;
-    var prompt = function() { return db+"@"+host+"> "; }
-
-    /**
-     *  * Make all queries pretty print by default.
-     *   */
-
+    /*
+     * Make all queries pretty by default
+     */
     DBQuery.prototype._prettyShell = true
 
-    /**
-     *  * Allow opting into the default ugly print mode.
-     *   */
-
+    /*
+     * Allow opting into the default ugly mode
+     */
     DBQuery.prototype.ugly = function () {
         this._prettyShell = false;
         return this
     }
-    
+   
+    /*
+     * Quick short cut for db.getCollectionNames() because its too long
+     */
     DB.prototype.colls = function() {
         return this.getCollectionNames();
+    }
+
+    /*
+     * New method to return elements in descending order of MongoID. 
+     * Essentially to get the last created documents
+     */
+    DBQuery.prototype.reverse = function() {
+        var limitCount = (arguments[0]) ? parseInt(arguments[0]) : 1;
+        return this.sort({_id: -1}).limit(limitCount);
+    }
+
+    /*
+     * Return the last one record only
+     */
+    DBQuery.prototype.last = function() {
+        return this.reverse(1);
     }
 })();

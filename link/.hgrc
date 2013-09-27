@@ -16,6 +16,8 @@ bms = bookmarks
 
 lg = log --graph
 
+revertc = revert -C
+
 # Commit message shortcuts.
 cm = commit -m
 cws = commit -m 'Whitespace.'
