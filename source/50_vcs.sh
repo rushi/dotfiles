@@ -99,3 +99,10 @@ function hgstatus() {
     echo $templist | grep -v '^?'
 }
 
+function gitreporefresh() {
+    git pull upstream master 
+    git add . 
+    git commit -a -m "resync upstream on `date`"
+    git push 
+    cd -
+}
