@@ -16,6 +16,8 @@ bms = bookmarks
 
 lg = log --graph
 
+pb = push -b
+
 revertc = revert -C
 
 # Commit message shortcuts.
@@ -23,7 +25,9 @@ cm = commit -m
 cws = commit -m 'Whitespace.'
 
 [extdiff]
-cmd.meld = /usr/bin/meld
+# cmd.meld = /usr/bin/meld # For ubuntu only
+cmd.ksdiff = /usr/local/bin/ksdiff
+opts.ksdiff = --changeset --wait --filelist
 
 [extensions]
 # sjl.bitbucket.org/hg-prompt
@@ -44,7 +48,13 @@ mq =
 purge =
 # http://mercurial.selenic.com/wiki/ConvertExtension
 convert =
+# Kaleidoscope diff
+#hgext.extdiff =
 
 [pager]
 pager = LESS='FRX' less
 ignore = version, help, update
+
+[merge-tools]
+Kaleidoscope.executable = /usr/local/bin/ksdiff
+Kaleidoscope.args = --merge --output $output --base $base -- $local $other

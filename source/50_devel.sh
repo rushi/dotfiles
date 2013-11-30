@@ -13,5 +13,4 @@ alias py="python"
 
 # Symfony
 alias console='php app/console'
-alias clearspool='rm -rf app/spool/default/*.message;rm -rf app/spool/default/.*.message'
-alias clearcache='rm -rf app/cache/*'
+alias xolaphpunit='phpunit -c app/phpunit.xml.dist --debug -d memory_limit=512M'

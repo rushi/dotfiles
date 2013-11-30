@@ -1,6 +1,8 @@
 # IP addresses
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias whois="whois -h whois-servers.net"
+# Grab the local lan ip. tested on osx only
+alias lanip="ifconfig | grep inet | awk '{print $2}' | grep -v '::'"
 
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache"
