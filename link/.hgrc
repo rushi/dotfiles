@@ -26,8 +26,8 @@ cws = commit -m 'Whitespace.'
 
 [extdiff]
 # cmd.meld = /usr/bin/meld # For ubuntu only
-cmd.ksdiff = /usr/local/bin/ksdiff
-opts.ksdiff = --changeset --wait --filelist
+# cmd.ksdiff = /usr/local/bin/ksdiff
+# opts.ksdiff = --changeset --wait --filelist
 
 [extensions]
 # sjl.bitbucket.org/hg-prompt
@@ -55,6 +55,6 @@ convert =
 pager = LESS='FRX' less
 ignore = version, help, update
 
-[merge-tools]
-Kaleidoscope.executable = /usr/local/bin/ksdiff
-Kaleidoscope.args = --merge --output $output --base $base -- $local $other
+#[merge-tools]
+#Kaleidoscope.executable = /usr/local/bin/ksdiff
+#Kaleidoscope.args = --merge --output $output --base $base -- $local $other
