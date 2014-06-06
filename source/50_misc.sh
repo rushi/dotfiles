@@ -16,4 +16,4 @@ function titlebar() {
   echo -n $'\e]0;'"$*"$'\a'
 }
 
-alias ps\?="ps -ef | grep -i"
+alias ps\?="ps aux | grep -i"

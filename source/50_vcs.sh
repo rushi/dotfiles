@@ -26,8 +26,11 @@ alias hc='hg commit'
 alias hcmm='hg commit -m "merge"'
 alias hst='hg status'
 alias hgl='hg log'
-alias hgp='hg push'
-alias hgpu='hg pull'
+alias hgp='echo "Too ambigous -- push (hgps) or pull (hgu)?"'
+alias hgpu='hgp'
+alias hgph='hgph'
+alias hgu='hg pull'
+alias hgps='hg push'
 
 # open all changed files (that still actually exist) in the editor
 function ged() {

@@ -5,7 +5,7 @@
 PATH=/usr/local/bin:$(path_remove /usr/local/bin)
 # Add Homebrew path
 PATH=/usr/local/sbin:$PATH
-PATH=/Applications/MAMP/bin/php/php5.4.19/bin:$PATH
+PATH=/Applications/MAMP/bin/php/php5.5.10/bin:$PATH
 export PATH
 
 # Trim new lines and copy to clipboard

@@ -1,11 +1,11 @@
 # IP addresses
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias whois="whois -h whois-servers.net"
+# alias whois="whois -h whois-servers.net"
 # Grab the local lan ip. tested on osx only
-alias lanip="ifconfig | grep inet | awk '{print $2}' | grep -v '::'"
+alias lanip='ifconfig | grep -E "(?:[0-9]{1,3}\.){3}[0-9]{1,3}"'
 
 # Flush Directory Service cache
-alias flush="dscacheutil -flushcache"
+alias dnsflush="dscacheutil -flushcache"
 
 # View HTTP traffic
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|(GET|POST) \/.*\""

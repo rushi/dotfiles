@@ -13,4 +13,19 @@ alias py="python"
 
 # Symfony
 alias console='php app/console'
-alias xolaphpunit='phpunit -c app/phpunit.xml.dist --debug -d memory_limit=512M'
+alias xpu='xolaphpunit'
+alias flushlogs='cat /dev/null > app/logs/*.log;wc -l app/logs/*.log'
+
+# run unit tests
+function xolaphpunit() {
+    set +x
+    phpunit -c app/phpunit.xml.dist --debug -d memory_limit=2048M "$@"
+    set -x
+}
+
+# Remove stuff from symfony's email spool
+function clearspool() {
+    rm -rf app/spool/default/*
+    rm -rf app/spool/default/.*
+    ls -a app/spool/default/
+}

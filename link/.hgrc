@@ -17,12 +17,14 @@ bms = bookmarks
 lg = log --graph
 
 pb = push -b
+# http://hgtip.com/tips/advanced/2009-09-28-nudge-a-gentler-push/
+# push only the working directory’s parent revision (and its ancestors)
+nudge = push --rev .
 
 revertc = revert -C
 
 # Commit message shortcuts.
-cm = commit -m
-cws = commit -m 'Whitespace.'
+cm = commit
 
 [extdiff]
 # cmd.meld = /usr/bin/meld # For ubuntu only
@@ -48,8 +50,14 @@ mq =
 purge =
 # http://mercurial.selenic.com/wiki/ConvertExtension
 convert =
-# Kaleidoscope diff
-#hgext.extdiff =
+# http://mercurial.selenic.com/wiki/TransplantExtension
+# Transplant patches
+transplant =
+# http://mercurial.selenic.com/wiki/EolExtension
+eol = 
+# http://mercurial.selenic.com/wiki/ShareExtension
+# This extension allows for sharing the 'store' (ie history) portion of a repository with one or more other locally-accessible repositories while maintaining an independent working directory state. This can make creating a working directory for a branch faster and less expensive. It can also be used for a simple collaboration mode as all commits immediately appear in the history of sharing repositories without the need for push or pull.
+share =
 
 [pager]
 pager = LESS='FRX' less

@@ -29,6 +29,15 @@
         return this.sort({_id: -1}).limit(limitCount);
     }
 
+    DBQuery.prototype.asc = function() {
+        var limitCount = (arguments[0]) ? parseInt(arguments[0]) : 100;
+        return this.sort({_id: 1}).limit(limitCount);
+    }
+
+    DBQuery.prototype.desc = function() {
+        return this.reverse();
+    }
+
     /*
      * Return the last one record only
      */
