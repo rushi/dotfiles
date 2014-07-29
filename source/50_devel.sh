@@ -25,7 +25,7 @@ function xolaphpunit() {
 
 # Remove stuff from symfony's email spool
 function clearspool() {
-    rm -rf app/spool/default/*
-    rm -rf app/spool/default/.*
+    rm -rf app/spool/default/
+    mkdir -p app/spool/default/
     ls -a app/spool/default/
 }

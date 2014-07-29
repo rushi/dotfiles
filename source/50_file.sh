@@ -44,9 +44,7 @@ function f() {
 alias cls="clear"
 alias cd..="cd .."
 alias mate="mate -r"
-alias sl='du -sh * | grep "M"'
 alias tree="tree -C"
-alias e='subl . &'
 
 export personal="$HOME/Sites/personal"
 export p="$personal" # personal is just so long to type

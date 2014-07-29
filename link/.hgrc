@@ -7,7 +7,6 @@ ignore = ~/.hgignore
 # Some useful little aliases.
 [alias]
 stam = status -am
-summ = summary
 su = summary
 fdiff = diff -U 10000000000000
 
@@ -54,7 +53,7 @@ convert =
 # Transplant patches
 transplant =
 # http://mercurial.selenic.com/wiki/EolExtension
-eol = 
+#eol = 
 # http://mercurial.selenic.com/wiki/ShareExtension
 # This extension allows for sharing the 'store' (ie history) portion of a repository with one or more other locally-accessible repositories while maintaining an independent working directory state. This can make creating a working directory for a branch faster and less expensive. It can also be used for a simple collaboration mode as all commits immediately appear in the history of sharing repositories without the need for push or pull.
 share =

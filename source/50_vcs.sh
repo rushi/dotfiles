@@ -1,27 +1,22 @@
-
+#
 # Git shortcuts
-
-alias g='git'
+#
 function ga() { git add "${@:-.}"; } # Add all files by default
 alias gp='git push'
 alias gpa='gp --all'
 alias gu='git pull'
 alias gl='git log'
-alias gg='gl --decorate --oneline --graph --date-order --all'
-alias gs='git status'
-alias gst='gs'
-alias gd='git diff'
-alias gdc='gd --cached'
+alias gst='git status'
 alias gm='git commit -m'
 alias gma='git commit -am'
 alias gb='git branch'
 alias gba='git branch -a'
 function gc() { git checkout "${@:-master}"; } # Checkout master by default
-alias gco='gc'
-alias gcb='gc -b'
 alias gcl='git clone'
-alias gdk='git diff'
 
+#
+# Mercurial shortcuts
+#
 alias hc='hg commit'
 alias hcmm='hg commit -m "merge"'
 alias hst='hg status'
@@ -31,18 +26,6 @@ alias hgpu='hgp'
 alias hgph='hgph'
 alias hgu='hg pull'
 alias hgps='hg push'
-
-# open all changed files (that still actually exist) in the editor
-function ged() {
-  local files=()
-  for f in $(git diff --name-only "$@"); do
-    [ -e "$f" ] && files=("${files[@]}" "$f")
-  done
-  local n=${#files[@]}
-  echo "Opening $n $([ "$@" ] || echo "modified ")file$([ $n != 1 ] && \
-    echo s)${@:+ modified in }$@"
-  q "${files[@]}"
-}
 
 # add a github remote by github username
 function gra() {
@@ -75,16 +58,6 @@ function svnup () {
 
 function svndiff () {
     svn diff $* | /usr/local/Cellar/colordiff/1.0.9/bin/colordiff
-}
-
-function hgdiff () {
-    hg diff $* | /usr/local/Cellar/colordiff/1.0.9/bin/colordiff
-}
-
-function hgstatus() {
-    templist=`hg status $*`
-    echo `echo $templist | grep '^?' | wc -l` unversioned files/directories
-    echo $templist | grep -v '^?'
 }
 
 function gitreporefresh() {
