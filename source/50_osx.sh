@@ -8,8 +8,7 @@ PATH=/usr/local/sbin:$PATH
 PATH=/Applications/MAMP/bin/php/php5.5.10/bin:$PATH
 export PATH
 
-# Trim new lines and copy to clipboard
-alias c="tr -d '\n' | pbcopy"
+alias ql="quicklook"
 
 # Make 'less' more.
 eval "$(lesspipe.sh)"
@@ -19,7 +18,7 @@ alias ss="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resou
 
 alias pf="open -a 'Path Finder'"
 alias mysql="mysql --socket=/Applications/MAMP/tmp/mysql/mysql.sock"
-alias cpwd='pwd|xargs echo -n|pbcopy'
+alias top="htop" # Install this through homebrew
 
 function server_start() {
     sudo sh /Applications/MAMP/bin/startApache.sh
