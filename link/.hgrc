@@ -8,14 +8,15 @@ ignore = ~/.hgignore
 [alias]
 stam = status -am
 su = summary
-fdiff = diff -U 10000000000000
 
-bm = bookmark
-bms = bookmarks
+# Default diff is by ignoring white-space changes
+diff = diff -b
 
-lg = log --graph
+# Pull and update to the default regardless of the fact that changesets were pulled
+refresh = !$HG update default ; $HG pull -u default
 
 pb = push -b
+
 # http://hgtip.com/tips/advanced/2009-09-28-nudge-a-gentler-push/
 # push only the working directory’s parent revision (and its ancestors)
 nudge = push --rev .
@@ -24,6 +25,9 @@ revertc = revert -C
 
 # Commit message shortcuts.
 cm = commit
+
+[diff]
+git = True
 
 [extdiff]
 # cmd.meld = /usr/bin/meld # For ubuntu only

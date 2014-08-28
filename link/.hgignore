@@ -15,5 +15,3 @@ vim/spell
 
 SpikeBundle/*
 
-syntax: regexp
-^cc$
