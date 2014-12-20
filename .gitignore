@@ -7,3 +7,4 @@ link/.ssh/known_hosts
 # To be git linked sometime
 bin/composer*
 libs/hg-prompt/prompt.pyc
+phpunit*

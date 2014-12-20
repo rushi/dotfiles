@@ -12,7 +12,9 @@ fi
 alias py="python"
 
 # Symfony
-alias console='php app/console'
+alias sf='php app/console'
+alias sfcl='sf cache:clear'
+alias sfapc='sf apc:clear'
 alias xpu='xolaphpunit'
 alias flushlogs='cat /dev/null > app/logs/*.log;wc -l app/logs/*.log'
 

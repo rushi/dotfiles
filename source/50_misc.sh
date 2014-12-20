@@ -9,7 +9,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Prevent less from clearing the screen while still showing colors.
-export LESS="-XRMgIsw"
+export LESS="-FXRMgIsw"
 
 # Set the terminal's title bar.
 function titlebar() {

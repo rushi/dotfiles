@@ -5,10 +5,15 @@
 PATH=/usr/local/bin:$(path_remove /usr/local/bin)
 # Add Homebrew path
 PATH=/usr/local/sbin:$PATH
-PATH=/Applications/MAMP/bin/php/php5.5.10/bin:$PATH
+PATH=/Applications/MAMP/bin/php/php5.5.10/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 export PATH
 
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export MANPATH
+
 alias ql="quicklook"
+# https://github.com/alloy/terminal-notifier
+alias notify="terminal-notifier" # brew install terminal-notifier
 
 # Make 'less' more.
 eval "$(lesspipe.sh)"
@@ -22,7 +27,7 @@ alias top="htop" # Install this through homebrew
 
 function server_start() {
     sudo sh /Applications/MAMP/bin/startApache.sh
-    sh /Applications/MAMP/bin/startMysql.sh
+    sudo sh /Applications/MAMP/bin/startMysql.sh
 }
 
 function server_stop() {
@@ -34,9 +39,23 @@ function log_php() {
 }
 
 function log_apache() {
-    tail -f /Applications/MAMP/logs/apache_error_log
+    tail -f /Applications/MAMP/logs/apache_error.log
 }
 
 function log_access() {
-    tail -f /Applications/MAMP/logs/apache_access_log
+    tail -f /Applications/MAMP/logs/apache_access.log
+}
+
+function notify_me() {
+    title=$1
+    message=$2
+    if [[ -z $1 ]]; then
+      title="Process complete"
+    fi
+
+    if [[ -z $2 ]]; then
+      message="Process complete notification. Check iTerm"
+    fi
+
+    terminal-notifier -title "$title" -message "$message" -sound default -activate com.googlecode.iterm2
 }
