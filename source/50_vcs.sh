@@ -1,40 +1,30 @@
 #
 # Git shortcuts
 #
-function ga() { git add "${@:-.}"; } # Add all files by default
 alias gp='git push'
-alias gpa='gp --all'
-alias gu='git pull'
-alias gl='git log'
 alias gst='git status'
-alias gm='git commit -m'
-alias gma='git commit -am'
 alias gb='git branch'
 alias gba='git branch -a'
-function gc() { git checkout "${@:-master}"; } # Checkout master by default
 alias gcl='git clone'
 
-#
-# Mercurial shortcuts
-#
-alias hc='hg commit'
-alias hcmm='hg commit -m "merge"'
-alias hst='hg status'
-alias hgl='hg log'
-alias hgp='echo "Too ambigous -- push (hgps) or pull (hgu)?"'
-alias hgpu='hgp'
-alias hgph='hgph'
-alias hgu='hg pull'
-alias hgps='hg push'
-
-# add a github remote by github username
-function gra() {
-  if (( "${#@}" != 1 )); then
-    echo "Usage: gra githubuser"
+# add a github remote
+function ghra() {
+  if (( "${#@}" <= 1 )); then
+    echo "Usage: ghra [shortname] user/repo"
     return 1;
   fi
-  local repo=$(gr show -n origin | perl -ne '/Fetch URL: .*github\.com[:\/].*\/(.*)/ && print $1')
-  gr add "$1" "git://github.com/$1/$repo"
+  
+  git remote add "$1" "git@github.com:$2"
+  echo -e "\nYour current remotes:"
+  git remote -v
+}
+
+function gitreporefresh() {
+    git pull upstream master 
+    git add . 
+    git commit -a -m "resync upstream on `date`"
+    git push 
+    cd -
 }
 
 # OSX-specific Git shortcuts
@@ -44,6 +34,18 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     alias gd='gdk'
   fi
 fi
+
+#
+# Mercurial shortcuts
+#
+alias hcmm='hg commit -m "merge"'
+alias hst='hg status'
+alias hgl='hg log'
+alias hgp='echo "Too ambigous -- push (hgps) or pull (hgu)?"'
+alias hgpu='hgp'
+alias hgph='hgph'
+alias hgu='hg pull'
+alias hgps='hg push'
 
 function svnstatus () {
     templist=`svn status $*`
@@ -57,13 +59,6 @@ function svnup () {
 }
 
 function svndiff () {
-    svn diff $* | /usr/local/Cellar/colordiff/1.0.9/bin/colordiff
+    svn diff $* | colordiff
 }
 
-function gitreporefresh() {
-    git pull upstream master 
-    git add . 
-    git commit -a -m "resync upstream on `date`"
-    git push 
-    cd -
-}

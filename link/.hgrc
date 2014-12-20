@@ -6,7 +6,6 @@ ignore = ~/.hgignore
 
 # Some useful little aliases.
 [alias]
-stam = status -am
 su = summary
 
 # Default diff is by ignoring white-space changes
@@ -14,6 +13,9 @@ diff = diff -b
 
 # Pull and update to the default regardless of the fact that changesets were pulled
 refresh = !$HG update default ; $HG pull -u default
+
+# Pull and merge from default
+sync = !$HG pull ; $HG merge default
 
 pb = push -b
 
@@ -33,6 +35,8 @@ git = True
 # cmd.meld = /usr/bin/meld # For ubuntu only
 # cmd.ksdiff = /usr/local/bin/ksdiff
 # opts.ksdiff = --changeset --wait --filelist
+#cmd.arxdiff = /Applications/Araxis Merge.app/Contents/Utilities/compare
+#opts.arxdiff = -wait -title1:$plabel1\ $parent -title2:$clabel\ $child -2 $parent $child
 
 [extensions]
 # sjl.bitbucket.org/hg-prompt
@@ -56,8 +60,9 @@ convert =
 # http://mercurial.selenic.com/wiki/TransplantExtension
 # Transplant patches
 transplant =
-# http://mercurial.selenic.com/wiki/EolExtension
-#eol = 
+# http://mercurial.selenic.com/wiki/HisteditExtension
+# History editing plugin. Can use it to squash commits
+histedit =
 # http://mercurial.selenic.com/wiki/ShareExtension
 # This extension allows for sharing the 'store' (ie history) portion of a repository with one or more other locally-accessible repositories while maintaining an independent working directory state. This can make creating a working directory for a branch faster and less expensive. It can also be used for a simple collaboration mode as all commits immediately appear in the history of sharing repositories without the need for push or pull.
 share =
@@ -66,6 +71,10 @@ share =
 pager = LESS='FRX' less
 ignore = version, help, update
 
-#[merge-tools]
-#Kaleidoscope.executable = /usr/local/bin/ksdiff
-#Kaleidoscope.args = --merge --output $output --base $base -- $local $other
+[merge-tools]
+# Try and automatically merge first
+#araxismergetool.premerge = True
+#araxismergetool.args = $other $base $local $output
+#araxismergetool.executable = /Applications/Araxis Merge.app/Contents/Utilities/araxishgmerge
+#araxismergetool.checkconflict = True
+#araxismergetool.gui =  True
