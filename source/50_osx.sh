@@ -5,7 +5,7 @@
 PATH=/usr/local/bin:$(path_remove /usr/local/bin)
 # Add Homebrew path
 PATH=/usr/local/sbin:$PATH
-PATH=/Applications/MAMP/bin/php/php5.5.10/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
+PATH=/Applications/MAMP/bin/php/php5.5.26/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 export PATH
 
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"

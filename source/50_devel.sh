@@ -17,11 +17,12 @@ alias sfcl='sf cache:clear'
 alias sfapc='sf apc:clear'
 alias xpu='xolaphpunit'
 alias flushlogs='cat /dev/null > app/logs/*.log;wc -l app/logs/*.log'
+alias gh="hub"
 
 # run unit tests
 function xolaphpunit() {
     set +x
-    phpunit -c app/phpunit.xml.dist --debug -d memory_limit=2048M "$@"
+    phpunit -c app/phpunit.xml --debug -d memory_limit=4096M -d zend.enable_gc=0 "$@"
     set -x
 }
 

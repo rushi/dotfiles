@@ -24,4 +24,4 @@ fea=.html,.js,.less,.css
 tpl=.tpl
 
 --type-set=twig=.twig
-
+--type-set=feature=.feature

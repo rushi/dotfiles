@@ -65,6 +65,9 @@ function s:setupMarkup()
   map <buffer> <Leader>p :Mm <CR>
 endfunction
 
+" Set vim wrapping to 72 chars when you're writing a commit message
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
 " make and python use real tabs
 au FileType make                                     set noexpandtab
 au FileType python                                   set noexpandtab
@@ -118,3 +121,4 @@ set directory=~/.vim/backup
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+

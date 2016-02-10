@@ -5,7 +5,9 @@ alias gp='git push'
 alias gst='git status'
 alias gb='git branch'
 alias gba='git branch -a'
+alias gcom='git checkout master'
 alias gcl='git clone'
+alias gclean='git reset --hard && git clean -f'
 
 # add a github remote
 function ghra() {

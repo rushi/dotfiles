@@ -17,6 +17,9 @@ refresh = !$HG update default ; $HG pull -u default
 # Pull and merge from default
 sync = !$HG pull ; $HG merge default
 
+# Pull and switch to that branch
+switch = !$HG pull ; $HG update $1
+
 pb = push -b
 
 # http://hgtip.com/tips/advanced/2009-09-28-nudge-a-gentler-push/

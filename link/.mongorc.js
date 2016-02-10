@@ -25,7 +25,7 @@
      * Essentially to get the last created documents
      */
     DBQuery.prototype.reverse = function() {
-        var limitCount = (arguments[0]) ? parseInt(arguments[0]) : 100;
+        var limitCount = (arguments[0]) ? parseInt(arguments[0]) : 99999;
         return this.sort({_id: -1}).limit(limitCount);
     }
 

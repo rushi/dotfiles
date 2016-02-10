@@ -20,4 +20,4 @@ function dotfiles() {
 }
 
 # Not needed since I don't use bash
-# src
+src
