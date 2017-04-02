@@ -10,14 +10,18 @@ if [ "$(type rbenv)" ]; then
 fi
 
 alias py="python"
+alias composer="php -d memory_limit=-1 ~/.dotfiles/bin/composer"
 
 # Symfony
-alias sf='php app/console'
+alias sf='php app/console --no-debug'
 alias sfcl='sf cache:clear'
 alias sfapc='sf apc:clear'
 alias xpu='xolaphpunit'
 alias flushlogs='cat /dev/null > app/logs/*.log;wc -l app/logs/*.log'
 alias gh="hub"
+
+alias mt="multitail -c -D"
+alias sft="multitail -c -D -ev deprecate"
 
 # run unit tests
 function xolaphpunit() {

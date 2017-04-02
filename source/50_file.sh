@@ -41,6 +41,8 @@ alias cd..="cd .."
 # Open file in textmate and add it to the recent files menu
 alias mate="mate -r"
 alias tree="tree -C"
+# Install `csvlook` for this (pip install)
+alias csv="csvlook"
 
 export personal="$HOME/Sites/personal"
 export p="$personal" # personal is just so long to type
