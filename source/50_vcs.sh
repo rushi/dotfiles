@@ -11,14 +11,24 @@ alias gclean='git reset --hard && git clean -f'
 
 # add a github remote
 function ghra() {
-  if (( "${#@}" <= 1 )); then
+  if [[ "${#@}" -le 1 ]]; then
     echo "Usage: ghra [shortname] user/repo"
     return 1;
   fi
 
-  git remote add "$1" "git@github.com:$2"
+  git remote add "$1" "git@github.com:$2.git"
   echo -e "\nYour current remotes:"
   git remote -v
+}
+
+function ghfetch() {
+    if [[ "${#@}" -ne 2 ]]; then
+      echo "Usage: ghfetch [REMOTE] [BRANCH]"
+      return 1;
+    fi
+
+    git fetch "$1" "$2"
+    git checkout -t "$1/$2"
 }
 
 function gitreporefresh() {

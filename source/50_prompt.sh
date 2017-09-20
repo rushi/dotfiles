@@ -25,5 +25,5 @@ patches: <patches|join( → )|pre_applied(%{$fg[yellow]%})|post_applied(%{$reset
 }
 
 PROMPT='
-%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info)$(hg_prompt_info)
+%{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info)$(hg_prompt_info)
 $(prompt_char) '

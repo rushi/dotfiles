@@ -66,3 +66,4 @@ function dotfiles() {
 
 src
 export NODE_PATH=/usr/local/lib/node_modules
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
