@@ -1,6 +1,6 @@
 [user]
-	name = Rushi Vishavadia
-	email = rushi.v@gmail.com
+  name = Rushi Vishavadia
+  email = rushi.v@gmail.com
 [core]
   autocrlf = input
   whitespace = fix,trailing-space
@@ -53,5 +53,3 @@
 	newHighlight = green bold 22
 [commit]
 	template = /Users/rushi/.stCommitMsg
-[alias]
-	yesterday = log --all --author=\"rushi\" --since=\"yesterday\" --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\"
