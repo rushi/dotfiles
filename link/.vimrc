@@ -123,4 +123,4 @@ if filereadable(expand("~/.vimrc.local"))
 endif
 
 " Vim Plugins
-call plug#begin('~/.vim/plugged')
+" call plug#begin('~/.vim/plugged')
