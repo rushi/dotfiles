@@ -122,3 +122,5 @@ if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
 
+" Vim Plugins
+call plug#begin('~/.vim/plugged')
