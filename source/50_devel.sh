@@ -26,7 +26,7 @@ alias sft="multitail -c -D -ev deprecate"
 # run unit tests
 function xolaphpunit() {
     set +x
-    phpunit -c app/phpunit.xml --debug -d memory_limit=4096M -d zend.enable_gc=0 "$@"
+    vendor/phpunit/phpunit/phpunit -c app/phpunit.xml --debug -d memory_limit=4096M "$@"
     set -x
 }
 

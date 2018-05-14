@@ -24,6 +24,7 @@ function hg_prompt_info {
 patches: <patches|join( → )|pre_applied(%{$fg[yellow]%})|post_applied(%{$reset_color%})|pre_unapplied(%{$fg_bold[black]%})|post_unapplied(%{$reset_color%})>>" 2>/dev/null
 }
 
+#$(hg_prompt_info)
 PROMPT='
-%{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info)$(hg_prompt_info)
+%{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info)
 $(prompt_char) '
