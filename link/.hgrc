@@ -43,7 +43,7 @@ git = True
 
 [extensions]
 # sjl.bitbucket.org/hg-prompt
-prompt = ~/.dotfiles/libs/hg-prompt/prompt.py
+# prompt = ~/.dotfiles/libs/hg-prompt/prompt.py
 # http://mercurial.selenic.com/wiki/ProgressExtension
 progress = 
 # http://mercurial.selenic.com/wiki/ColorExtension

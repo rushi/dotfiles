@@ -7,7 +7,6 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gcom='git checkout master'
 alias gcl='git clone'
-alias gclean='git reset --hard && git clean -f'
 
 # add a github remote
 function ghra() {
@@ -30,22 +29,6 @@ function ghfetch() {
     git fetch "$1" "$2"
     git checkout -t "$1/$2"
 }
-
-function gitreporefresh() {
-    git pull upstream master
-    git add .
-    git commit -a -m "resync upstream on `date`"
-    git push
-    cd -
-}
-
-# OSX-specific Git shortcuts
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-  alias gdkc='gdk --cached'
-  if [ ! "$SSH_TTY" ]; then
-    alias gd='gdk'
-  fi
-fi
 
 #
 # Mercurial shortcuts

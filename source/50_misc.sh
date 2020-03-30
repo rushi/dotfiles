@@ -17,3 +17,4 @@ function titlebar() {
 }
 
 alias ps\?="ps aux | grep -i"
+alias ka="killall"

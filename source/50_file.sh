@@ -43,6 +43,7 @@ alias mate="mate -r"
 alias tree="tree -C"
 # Install `csvlook` for this (pip install)
 alias csv="csvlook"
+alias rrsync="rsync -ravz --progress"
 
 export personal="$HOME/Sites/personal"
 export p="$personal" # personal is just so long to type
