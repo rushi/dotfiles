@@ -4,20 +4,10 @@
 [core]
   autocrlf = input
   whitespace = fix,trailing-space
-  excludesfile = ~/.gitignore_global
+  excludesfile = /Users/rushi/.gitignore_global
+  pager = diff-so-fancy | less --tabs=1,5 -R
 [apply]
   whitespace = fix
-[alias]
-  br = branch
-  ci = commit
-  co = checkout
-  df = diff
-  g = grep -I
-  lg = log -p
-  pp = !"echo 'Pull'; git pull; echo 'Push'; git push"
-  rb = rbranch
-  rv = review
-  st = status
 [branch "master"]
   remote = origin
   merge = refs/heads/master
@@ -39,4 +29,31 @@
 [merge]
   log = true
 [push]
-	default = simple
+	default = current
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[help]
+	autocorrect = 1
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[commit]
+	template = /Users/rushi/.stCommitMsg
+[alias]
+    # git branch --sort="-committerdate" --format="%(color:green)%(committerdate:relative)%(color:reset) %(refname:short)"
+    lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
+

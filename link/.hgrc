@@ -1,5 +1,5 @@
 [ui]
-username = Rushi Vishavadia <rushi@xola.com>
+username = Rushi Vishavadia <rushi.v@gmail.com>
 editor = vim
 commitsubrepos = False
 ignore = ~/.hgignore
@@ -45,7 +45,7 @@ git = True
 # sjl.bitbucket.org/hg-prompt
 # prompt = ~/.dotfiles/libs/hg-prompt/prompt.py
 # http://mercurial.selenic.com/wiki/ProgressExtension
-progress = 
+progress =
 # http://mercurial.selenic.com/wiki/ColorExtension
 color =
 # http://mercurial.selenic.com/wiki/RebaseExtension
@@ -53,7 +53,7 @@ rebase =
 # http://mercurial.selenic.com/wiki/PagerExtension
 pager =
 # http://mercurial.selenic.com/wiki/ExtdiffExtension
-hgext.extdiff = 
+hgext.extdiff =
 # http://mercurial.selenic.com/wiki/GraphlogExtension
 graphlog =
 mq =
