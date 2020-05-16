@@ -6,6 +6,7 @@ alias gst='git status'
 alias gb='git branch'
 alias gcom='git checkout master'
 alias gcl='git clone'
+alias gr='git remote'
 
 # add a github remote
 function ghra() {
@@ -18,6 +19,17 @@ function ghra() {
   echo -e "\nYour current remotes:"
   git remote -v
 }
+
+# add a github remote by github username
+function gra() {
+  if (( "${#@}" != 1 )); then
+    echo "Usage: gra githubuser"
+    return 1;
+  fi
+  local repo=$(git remote show -n origin | perl -ne '/Fetch URL: .*github\.com[:\/].*\/(.*)/ && print $1')
+  git remote add "$1" "git://github.com/$1/$repo"
+}
+
 
 function ghfetch() {
     if [[ "${#@}" -ne 2 ]]; then
