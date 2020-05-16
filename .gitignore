@@ -6,5 +6,7 @@ link/.ssh/known_hosts
 *LOCAL*
 # To be git linked sometime
 bin/composer*
+bin/ip
+bin/ngrok
 libs/hg-prompt/prompt.pyc
 phpunit*

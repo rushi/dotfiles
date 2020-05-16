@@ -28,8 +28,6 @@ set wildignore+=*.o,*.obj,.git,*.rbc
 " Status bar
 set laststatus=2
 
-let mapleader = ","
-
 " Remember last location in file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -46,29 +44,15 @@ au FileType python                                   set noexpandtab
 " Vagrantfile Thorfile, Rakefile and Gemfile are Ruby
 au BufRead,BufNewFile {Vagrantfile,Gemfile,Rakefile,Thorfile,config.ru}    set ft=ruby
 
-" md, markdown, and mk are markdown and define buffer-local preview
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
-
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
 
-" Unimpaired configuration
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
 " Use modeline overrides
 set modeline
 set modelines=10
-
-" Default color scheme
-" color desert
 
 "Directories for swp files
 set backupdir=~/.vim/backup
@@ -78,4 +62,3 @@ set directory=~/.vim/backup
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
-

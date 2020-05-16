@@ -4,7 +4,6 @@
 alias gp='git push'
 alias gst='git status'
 alias gb='git branch'
-alias gba='git branch -a'
 alias gcom='git checkout master'
 alias gcl='git clone'
 

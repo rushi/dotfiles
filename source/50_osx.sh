@@ -19,26 +19,21 @@ eval "$(lesspipe.sh)"
 alias pf="open -a 'Path Finder'"
 alias mysql="mysql --socket=/Applications/MAMP/tmp/mysql/mysql.sock"
 alias top="htop" # Install this through homebrew
+alias bs="brew services"
 
-function server_start() {
-    sudo sh /Applications/MAMP/bin/startApache.sh
-    sudo sh /Applications/MAMP/bin/startMysql.sh
-}
+# MAMP Apache
+alias mampctl="sudo /Applications/MAMP/Library/bin/apachectl"
+export MAMPLOGS="/Applications/MAMP/logs"
 
-function server_stop() {
-    sudo sh /Applications/MAMP/bin/stop.sh
-}
 
 function log_php() {
-    tail -f /Applications/MAMP/logs/php_error.log
+    tail -f $MAMPLOGS/php_error.log
 }
 
 function log_apache() {
-    tail -f /Applications/MAMP/logs/apache_error.log
+    tail -f $MAMPLOGS/apache_error.log
 }
 
 function log_access() {
-    tail -f /Applications/MAMP/logs/apache_access.log
+    tail -f $MAMPLOGS/apache_access.log
 }
-
-alias bs="brew services"
