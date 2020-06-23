@@ -54,6 +54,7 @@ function src() {
     source "$HOME/.dotfiles/source/$1.sh"
   else
     for file in ~/.dotfiles/source/*; do
+      #echo "Sourcing $file"
       source "$file"
     done
   fi
@@ -74,4 +75,30 @@ export NODE_PATH=`npm root -g`
 export PATH="/usr/local/opt/mongodb-community@3.6/bin:$PATH"
 export DYLD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_LIBRARY_PATH
 
+# TODO: Move the below into dotfiles
+# From: https://github.com/nvm-sh/nvm#zsh
+# Automatically use the correct node version when a dir has .nvmrc
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
 
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")    
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      echo "nvm hook in .zshrc was going to install this node version. Not doing in."
+      # nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      echo "You are not on the same version as .nvmrc. Expected: $nvmrc_node_version Actual: $node_version"
+      # nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "You are not using the default node. Expected: $(nvm version default) Actual: $node_version"
+    # echo "Reverting to nvm default version"
+    # nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc

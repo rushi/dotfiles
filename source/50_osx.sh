@@ -25,15 +25,6 @@ alias bs="brew services"
 alias mampctl="sudo /Applications/MAMP/Library/bin/apachectl"
 export MAMPLOGS="/Applications/MAMP/logs"
 
-
-function log_php() {
-    tail -f $MAMPLOGS/php_error.log
-}
-
-function log_apache() {
-    tail -f $MAMPLOGS/apache_error.log
-}
-
-function log_access() {
-    tail -f $MAMPLOGS/apache_access.log
-}
+alias log_php="tail -f $MAMPLOGS/php_error.log"
+alias log_apache="tail -f $MAMPLOGS/apache_error.log"
+alias log_access="tail -f $MAMPLOGS/apache_access.log"

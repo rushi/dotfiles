@@ -8,6 +8,13 @@ alias gcom='git checkout master'
 alias gcl='git clone'
 alias gr='git remote'
 
+alias gpxm="git pull xola master --tags"
+alias gprxm="git pull --rebase xola master"
+alias gcop="git checkout -- package-lock.json"
+
+alias gh="hub" # Conflicts with Github's official cli.github.com tool
+alias ghpr="hub pull-request -o -b xola:master"
+
 # add a github remote
 function ghra() {
   if [[ "${#@}" -le 1 ]]; then
@@ -51,4 +58,3 @@ alias hgpu='hgp'
 alias hgph='hgph'
 alias hgu='hg pull'
 alias hgps='hg push'
-alias ghpr="hub pull-request -o -b xola:master"

@@ -18,13 +18,10 @@ alias sfcl='sf cache:clear'
 alias sfapc='sf apc:clear'
 alias xpu='xolaphpunit'
 alias flushlogs='cat /dev/null > var/logs/*.log;wc -l var/logs/*.log'
-alias gh="hub"
 
 # run unit tests
 function xolaphpunit() {
-    set +x
     vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist --debug -d memory_limit=4096M "$@"
-    set -x
 }
 
 # Remove stuff from symfony's email spool
@@ -33,3 +30,7 @@ function clearspool() {
     mkdir -p app/spool/default/
     ls -a app/spool/default/
 }
+
+## NODEJS
+alias npr="npm --silent run"
+alias npmls="npm ls --depth=0"
