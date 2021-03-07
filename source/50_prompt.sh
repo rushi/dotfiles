@@ -24,7 +24,23 @@ function hg_prompt_info {
 patches: <patches|join( → )|pre_applied(%{$fg[yellow]%})|post_applied(%{$reset_color%})|pre_unapplied(%{$fg_bold[black]%})|post_unapplied(%{$reset_color%})>>" 2>/dev/null
 }
 
+function has_nvmrc {
+  FILE=package.json
+  if ! test -f "$FILE"; then
+    # No need todo nvm check because package.json does not exist and this is not a node app
+    return
+  fi
+
+  NVMRC=.nvmrc
+  if ! test -f "$NVMRC"; then
+    # No .nvmrc - no need to test this
+    return
+  fi
+
+  echo "Node `cat .nvmrc`"
+}
+
 #$(hg_prompt_info)
 PROMPT='
-%{$fg[green]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info)
+%{$fg[green]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info) $(has_nvmrc)
 $(prompt_char) '

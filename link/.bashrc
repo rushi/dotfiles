@@ -21,3 +21,8 @@ function dotfiles() {
 
 # Not needed since I don't use bash
 src
+SSH_IP=`echo $SSH_CONNECTION | awk '{print $1}'`
+if [[ ! -z $SSH_IP ]]; then
+    echo "Hello, remote visitor from $SSH_IP. You are using my bash shell"
+    noti -bkg -m "Macbook login from $SSH_IP" -t "Remote Login"
+fi

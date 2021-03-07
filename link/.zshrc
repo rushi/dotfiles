@@ -15,10 +15,10 @@ ZSH_THEME="steeef"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="false"
 
 # Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=14
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -37,10 +37,12 @@ COMPLETION_WAITING_DOTS="true"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+NVM_LAZY_LOAD=true
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras composer ant)
+plugins=(zsh-nvm git git-extras)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -68,37 +70,19 @@ function dotfiles() {
 src
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export NODE_PATH=`npm root -g`
+
 export PATH="/usr/local/opt/mongodb-community@3.6/bin:$PATH"
+# I think this was to fix some openssl thing in python
 export DYLD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_LIBRARY_PATH
 
-# TODO: Move the below into dotfiles
-# From: https://github.com/nvm-sh/nvm#zsh
-# Automatically use the correct node version when a dir has .nvmrc
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+SSH_IP=`echo $SSH_CONNECTION | awk '{print $1}'`
+if [[ ! -z $SSH_IP ]]; then
+    echo "Hello, remote visitor from $SSH_IP, you are using my zsh shell"
+    noti -bkg -m "Macbook login from $SSH_IP" -t "Remote Login"
+fi
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")    
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      echo "nvm hook in .zshrc was going to install this node version. Not doing in."
-      # nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      echo "You are not on the same version as .nvmrc. Expected: $nvmrc_node_version Actual: $node_version"
-      # nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "You are not using the default node. Expected: $(nvm version default) Actual: $node_version"
-    # echo "Reverting to nvm default version"
-    # nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true

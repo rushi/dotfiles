@@ -34,3 +34,9 @@ function clearspool() {
 ## NODEJS
 alias npr="npm --silent run"
 alias npmls="npm ls --depth=0"
+
+function slsdeploy() {
+    set -x
+    npx serverless deploy --stage=$1 --env=$1 --secretsFile=config/local-$1.json
+    set +x
+}
