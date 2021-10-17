@@ -1,6 +1,6 @@
 # Compiled source #
 ###################
-*.com
+#*.com
 *.class
 *.dll
 *.exe
@@ -57,3 +57,22 @@ Desktop.ini
 
 # NPM
 .npmignore
+
+# IDE config
+.idea
+.netbeans
+
+# Selenium specific stuff for xola-core
+One.feature
+selenium\.sh
+xola-selenium-test-suite\.iml
+
+# Dummy folder in my projects to hide stuff
+git_ignore/
+
+# MongoDB dump
+*.bson
+*.metadata.json
+
+SpikeControllerTest.php
+spike.js

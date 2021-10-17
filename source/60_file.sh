@@ -23,9 +23,11 @@ alias tree="exa --tree"
 alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
+alias lslrt="ls -lr --sort oldest"
 
 # File size
-alias df="df -h"
+#alias df="df -h"
+alias df="duf"
 
 # Recursively delete `.DS_Store` files
 alias dsstoredel="find . -name '*.DS_Store' -type f -ls -delete"
@@ -50,6 +52,7 @@ alias rrsync="rsync -ravz --progress"
 export personal="$HOME/Sites/personal"
 export p="$personal" # personal is just so long to type
 export work="$HOME/Sites/work/xola"
+export x2="$HOME/Sites/work/xola/x2"
 
 # Fast directory switching
 ## required for zsh only

@@ -8,12 +8,32 @@ alias gcom='git checkout master'
 alias gcl='git clone'
 alias gr='git remote'
 
-alias gpxm="git pull xola master --tags"
-alias gprxm="git pull --rebase xola master"
+alias glxd="git pull xola development --tags"
+alias glrxd="git pull --rebase xola development"
 alias gcop="git checkout -- package-lock.json"
 
+function glxm() {
+  MAIN_BRANCH=`git branch -l master main | sed 's/^* //'`
+  set -x
+  git pull xola $MAIN_BRANCH --tags
+  set +x
+}
+
+function glrxm() {
+  MAIN_BRANCH=`git branch -l master main | sed 's/^* //'`
+  set -x
+  git pull --rebase xola $MAIN_BRANCH
+  set +x
+}
+
 alias gh="hub" # Conflicts with Github's official cli.github.com tool
-alias ghpr="hub pull-request -o -b xola:master"
+
+function ghpr() {
+  MAIN_BRANCH=`git branch -l master main | sed 's/^* //'`
+  set -x
+  hub pull-request -o -b xola:$MAIN_BRANCH
+  set +x
+}
 
 # add a github remote
 function ghra() {
@@ -26,17 +46,6 @@ function ghra() {
   echo -e "\nYour current remotes:"
   git remote -v
 }
-
-# add a github remote by github username
-function gra() {
-  if (( "${#@}" != 1 )); then
-    echo "Usage: gra githubuser"
-    return 1;
-  fi
-  local repo=$(git remote show -n origin | perl -ne '/Fetch URL: .*github\.com[:\/].*\/(.*)/ && print $1')
-  git remote add "$1" "git://github.com/$1/$repo"
-}
-
 
 function ghfetch() {
     if [[ "${#@}" -ne 2 ]]; then

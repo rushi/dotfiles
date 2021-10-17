@@ -1,6 +1,6 @@
 # IP addresses
 #alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias wanip="curl -s --fail ifconfig.me"
+alias wanip="curl -w '\n' -s --fail ifconfig.me"
 # alias whois="whois -h whois-servers.net"
 
 # Grab the local lan ip. tested on osx only

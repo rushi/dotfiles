@@ -1,3 +1,6 @@
+#### FIG ENV VARIABLES ####
+[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
+#### END FIG ENV VARIABLES ####
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -15,10 +18,10 @@ ZSH_THEME="steeef"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
-DISABLE_AUTO_UPDATE="false"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
-export UPDATE_ZSH_DAYS=14
+export UPDATE_ZSH_DAYS=30
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -71,14 +74,15 @@ src
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-export PATH="/usr/local/opt/mongodb-community@3.6/bin:$PATH"
+export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"
+
 # I think this was to fix some openssl thing in python
 export DYLD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_LIBRARY_PATH
 
 SSH_IP=`echo $SSH_CONNECTION | awk '{print $1}'`
 if [[ ! -z $SSH_IP ]]; then
     echo "Hello, remote visitor from $SSH_IP, you are using my zsh shell"
-    noti -bkg -m "Macbook login from $SSH_IP" -t "Remote Login"
+    #   noti -bkg -m "Macbook login from $SSH_IP" -t "Remote Login"
 fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -86,3 +90,14 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+
+#### FIG ENV VARIABLES ####
+# [ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
+
+
+#export ATUIN_NOBIND="true"
+#eval "$(atuin init zsh)"
+
+#bindkey '^r' _atuin_search_widget
