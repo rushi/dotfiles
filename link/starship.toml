@@ -1,0 +1,69 @@
+format = """
+$username\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$hg_branch\
+$docker_context\
+$package\
+$java\
+$nodejs\
+$php\
+$python\
+$red\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$vagrant\
+$nix_shell\
+$memory_usage\
+$env_var\
+$custom\
+$cmd_duration\
+$line_break\
+$jobs\
+$time\
+$status\
+$shell\
+$character"""
+
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[➜](bold red) "
+
+[git_branch]
+always_show_remote = true
+style = "green"
+format = "on [$symbol$branch]($style) "
+
+[nodejs]
+style = "green"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = false
+style = "cyan"
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[username]
+show_always = false
+format = "[$user]($style)@"
+style_user = "bold white"
+disabled = false
+
+[hostname]
+ssh_only = true
+trim_at = "."
+format = "[$hostname]($style) in "
+style = "bold white"
+disabled = false
+
+[package]
+disabled = true
