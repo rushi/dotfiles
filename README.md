@@ -1,38 +1,15 @@
 # Dotfiles
 
-Rushi's OS X / Ubuntu dotfiles.
+Rushi's OS X dotfiles.
 
 ## Why is this a git repo?
 
-Every time I've set up a new Linux or OS X machine, I've copied over my `.bashrc` file and my `~/bin` folder to each machine manually. And I've never done a very good job of actually maintaining these files. It's been a total mess. Now I've moved to zsh shell, and using the oh-my-zsh framework.
-
-I finally decided that I wanted to be able to execute a single command to "bootstrap" a new system to pull down all of my dotfiles and configs, as well as install all the tools I commonly use. In addition, I wanted to be able to re-execute that command at any time to synchronize anything that might have changed. Finally, I wanted to make it easy to re-integrate changes back in, so that other machines could be updated.
-
-That command is [~/bin/dotfiles][dotfiles], and this is my "dotfiles" Git repo.
+To version and maintain the history of my dotfiles. It also serves as a backup and allows me to revert to older versions in case of errors
 
 [dotfiles]: https://github.com/rushi/dotfiles/blob/master/bin/dotfiles
 [bin]: https://github.com/rushi/dotfiles/tree/master/bin
 
-## What, exactly, does the "dotfiles" command do?
-
-It's really not very complicated. When [dotfiles][dotfiles] is run, it does a few things:
-
-1. Git is installed if necessary, via APT or Homebrew (which is installed if necessary).
-2. This repo is cloned into the `~/.dotfiles` directory (or updated if it already exists).
-2. Files in `init` are executed (in alphanumeric order).
-3. Files in `copy` are copied into `~/`.
-4. Files in `link` are linked into `~/`.
-
-Note:
-
-* The `backups` folder only gets created when necessary. Any files in `~/` that would have been overwritten by `copy` or `link` get backed up there.
-* Files in `bin` are executable shell scripts ([~/.dotfiles/bin][bin] is added into the path).
-* Files in `source` get sourced whenever a new shell is opened (in alphanumeric order)..
-* Files in `conf` just sit there. If a config file doesn't _need_ to go in `~/`, put it in there.
-* Files in `caches` are cached files, only used by some scripts. This folder will only be created if necessary.
-
 ## Installation
-### OS X
 Notes:
 
 * You need to be an administrator (for `sudo`).
@@ -42,20 +19,9 @@ Notes:
 bash -c "$(curl -fsSl https://raw.github.com/rushi/dotfiles/master/install.sh)"
 ```
 
-### Ubuntu
-Notes:
-
-* You need to be an administrator (for `sudo`).
-* If APT hasn't been updated or upgraded recently, it will probably be a few minutes before you see anything.
-
-```sh
-bash -c "$(curl -fsSl https://raw.github.com/rushi/dotfiles/master/install.sh)"
-```
-
 ## The "init" step
 These things will be installed, but _only_ if they aren't already.
 
-### OS X
 * Homebrew
   * git
   * mercurial
@@ -66,27 +32,7 @@ These things will be installed, but _only_ if they aren't already.
   * git-extras
   * htop-osx
   * apple-gcc42 (via [homebrew-dupes](https://github.com/Homebrew/homebrew-dupes/blob/master/apple-gcc42.rb))
-
-### Ubuntu
-* APT
-  * build-essential
-  * libssl-dev
-  * git-core
-  * tree
-  * sl
-  * nmap
-  * telnet
-  * htop
-  * zsh
-
-### Both
-* Rbenv
-  * Ruby 1.9.3-p194 (default)
-  * Ruby 1.9.2-p290 (default)
-* Ruby Gems
-  * bundler
-  * awesome_print
-  * interactive_editor
+  * several other libraries
 
 ## The ~/ "copy" step
 Any file in the `copy` subdirectory will be copied into `~/`. Any file that _needs_ to be modified with personal information (like [.gitconfig](https://github.com/rushi/dotfiles/blob/master/copy/.gitconfig) which contains an email address and private key) should be _copied_ into `~/`. Because the file you'll be editing is no longer in `~/.dotfiles`, it's less likely to be accidentally committed into your public dotfiles repo.
