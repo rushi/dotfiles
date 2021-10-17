@@ -4,36 +4,36 @@
 alias gp='git push'
 alias gst='git status'
 alias gb='git branch'
-alias gcom='git checkout master'
 alias gcl='git clone'
 alias gr='git remote'
-
 alias glxd="git pull xola development --tags"
 alias glrxd="git pull --rebase xola development"
 alias gcop="git checkout -- package-lock.json"
+alias gpxm="echo 'You really want \"gpxm\"'"
+
+
+function MAIN_BRANCH() {
+  echo `git branch -l master main | sed 's/^* //'`
+}
+
+function gcom() {
+  echo "$fg[magenta]Switching too `MAIN_BRANCH`${reset_color}"
+  git checkout `MAIN_BRANCH`
+}
 
 function glxm() {
-  MAIN_BRANCH=`git branch -l master main | sed 's/^* //'`
-  set -x
-  git pull xola $MAIN_BRANCH --tags
-  set +x
+  echo "$fg[magenta]Pulling from xola `MAIN_BRANCH`${reset_color}"
+  git pull xola `MAIN_BRANCH` --tags
 }
 
 function glrxm() {
-  MAIN_BRANCH=`git branch -l master main | sed 's/^* //'`
-  set -x
-  git pull --rebase xola $MAIN_BRANCH
-  set +x
+  echo "$fg[magenta]Rebasing from xola `MAIN_BRANCH`${reset_color}"
+  git pull --rebase xola `MAIN_BRANCH`
 }
 
-alias gh="hub" # Conflicts with Github's official cli.github.com tool
-
-function ghpr() {
-  MAIN_BRANCH=`git branch -l master main | sed 's/^* //'`
-  set -x
-  hub pull-request -o -b xola:$MAIN_BRANCH
-  set +x
-}
+# function ghpr() {
+#   hub pull-request -o -b xola:$MAIN_BRANCH
+# }
 
 # add a github remote
 function ghra() {
