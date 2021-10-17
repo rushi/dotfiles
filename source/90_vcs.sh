@@ -17,7 +17,6 @@ function MAIN_BRANCH() {
 }
 
 function gcom() {
-  echo "$fg[magenta]Switching too `MAIN_BRANCH`${reset_color}"
   git checkout `MAIN_BRANCH`
 }
 

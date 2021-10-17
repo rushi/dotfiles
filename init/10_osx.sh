@@ -22,7 +22,7 @@ if [[ "$(type -P brew)" ]]; then
   brew update
 
   # Install Homebrew recipes.
-  recipes=(git mercurial tree sl lesspipe nmap git-extras htop-osx zsh htop coreutils findutils the_silver_searcher terminal-notifier ssh-copy-id wget)
+  recipes=(git mercurial tree sl lesspipe nmap git-extras htop-osx zsh htop coreutils findutils the_silver_searcher terminal-notifier ssh-copy-id wget starship bat curl duf dust exa grep hub)
 
   list="$(to_install "${recipes[*]}" "$(brew list)")"
   if [[ "$list" ]]; then

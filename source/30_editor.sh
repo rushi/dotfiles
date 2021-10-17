@@ -18,3 +18,4 @@ alias vi="vim"
 alias cat="bat -p"
 # bat has same functionoality
 alias less="bat"
+export PAGER="bat -p"

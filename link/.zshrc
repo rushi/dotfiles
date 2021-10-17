@@ -8,7 +8,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="steeef"
+# ZSH_THEME="steeef"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -58,7 +58,7 @@ function src() {
   if [ "$1" ]; then
     source "$HOME/.dotfiles/source/$1.sh"
   else
-    for file in ~/.dotfiles/source/*; do
+    for file in ~/.dotfiles/source/*.sh; do
       #echo "Sourcing $file"
       source "$file"
     done
@@ -89,7 +89,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # tabtab source for packages
 # uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+# [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+eval "$(starship init zsh)"
 
 
 #### FIG ENV VARIABLES ####
