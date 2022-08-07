@@ -18,12 +18,12 @@ alias ls="exa"
 alias ll="exa -al"
 alias la="exa -alg"
 alias tree="exa --tree"
+alias lsrt="ls -lrt"
 
 # Easier navigation: .., ..., -
 alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
-alias lslrt="ls -lr --sort oldest"
 
 # File size
 #alias df="df -h"
@@ -37,8 +37,9 @@ function mdcd() {
   mkdir -p "$@" && cd "$@"
 }
 
-function f() {
-  find . -iname "$@" -print
+function backup() {
+  set -x
+  mv "$1" "$1.bak"
 }
 
 alias cls="clear"
@@ -54,11 +55,14 @@ export p="$personal" # personal is just so long to type
 export work="$HOME/Sites/work/xola"
 export x2="$HOME/Sites/work/xola/x2"
 
+## ZOXIDE (z command) https://github.com/ajeetdsouza/zoxide#installation
+eval "$(zoxide init zsh)"
+
 # Fast directory switching
 ## required for zsh only
-function precmd () {
-  _z --add "$(pwd -P)"
-}
-_Z_NO_PROMPT_COMMAND=1
-_Z_DATA=~/.dotfiles/caches/.z
-. ~/.dotfiles/libs/z/z.sh
+#function precmd () {
+#  _z --add "$(pwd -P)"
+#}
+#_Z_NO_PROMPT_COMMAND=1
+#_Z_DATA=~/.dotfiles/caches/.z
+#. ~/.dotfiles/libs/z/z.sh

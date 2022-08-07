@@ -9,20 +9,27 @@ alias gr='git remote'
 alias glxd="git pull xola development --tags"
 alias glrxd="git pull --rebase xola development"
 alias gcop="git checkout -- package-lock.json"
-alias gpxm="echo 'You really want \"gpxm\"'"
-
+alias gpxm="echo 'You really want \"glxm\" (main|master) or \"glxd\"' (development)"
+alias glog="git log --first-parent --no-merges --decorate --graph"
+alias gcalint="git commit -am '🧹 Lint'";
+alias gclint="git commit -m '🧹 Lint'";
+alias hpox="hub push origin,xola"
 
 function MAIN_BRANCH() {
-  echo `git branch -l master main | sed 's/^* //'`
+  echo `git branch -l development master main | head -1 | sed 's/^* //'`
 }
 
 function gcom() {
   git checkout `MAIN_BRANCH`
 }
 
+function gcod() {
+  git checkout `MAIN_BRANCH`
+}
+
 function glxm() {
   echo "$fg[magenta]Pulling from xola `MAIN_BRANCH`${reset_color}"
-  git pull xola `MAIN_BRANCH` --tags
+  git pull xola `MAIN_BRANCH`
 }
 
 function glrxm() {
@@ -30,9 +37,13 @@ function glrxm() {
   git pull --rebase xola `MAIN_BRANCH`
 }
 
-# function ghpr() {
-#   hub pull-request -o -b xola:$MAIN_BRANCH
-# }
+function ghpr() {
+  if [[ $1 == "--help" ]]; then
+    echo "This will run $fg[magenta]hub pull-request -o -b xola:`MAIN_BRANCH`${reset_color}"
+    return
+  fi
+  hub pull-request -o -b xola:`MAIN_BRANCH`
+}
 
 # add a github remote
 function ghra() {

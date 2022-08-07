@@ -1,6 +1,5 @@
-#### FIG ENV VARIABLES ####
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && . "$HOME/.fig/shell/bashrc.pre.bash"
 # Add binaries into the path
 PATH=~/.dotfiles/bin:$PATH
 export PATH
@@ -31,10 +30,16 @@ if [[ ! -z $SSH_IP ]]; then
 fi
 
 
-#### FIG ENV VARIABLES ####
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
+
 
 
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sheval "$(atuin init bash)"
+
+alias rni="kill $(lsof -t -i:8081); rm -rf ios/build/; react-native run-ios"
+
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && . "$HOME/.fig/shell/bashrc.post.bash"
