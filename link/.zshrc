@@ -1,6 +1,10 @@
-#### FIG ENV VARIABLES ####
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -10,10 +14,6 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="steeef"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -22,9 +22,6 @@ DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
 export UPDATE_ZSH_DAYS=30
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -40,12 +37,10 @@ COMPLETION_WAITING_DOTS="true"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-NVM_LAZY_LOAD=true
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zsh-nvm git git-extras)
+plugins=(git git-extras)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -71,35 +66,31 @@ function dotfiles() {
 }
 
 src
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-
-export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"
-
-# I think this was to fix some openssl thing in python
-export DYLD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_LIBRARY_PATH
-
-SSH_IP=`echo $SSH_CONNECTION | awk '{print $1}'`
+SSH_IP=$(echo $SSH_CONNECTION | awk '{print $1}')
 if [[ ! -z $SSH_IP ]]; then
-    echo "Hello, remote visitor from $SSH_IP, you are using my zsh shell"
-    #   noti -bkg -m "Macbook login from $SSH_IP" -t "Remote Login"
+  echo "Hello, remote visitor from $SSH_IP, you are using my zsh shell"
+  #   noti -bkg -m "Macbook login from $SSH_IP" -t "Remote Login"
 fi
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# tabtab source for packages
-# uninstall by removing these lines
-# [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
-
 eval "$(starship init zsh)"
+eval "$(fnm env --use-on-cd)"
 
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
-#### FIG ENV VARIABLES ####
-# [ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
+export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
 
+# For compilers to find php@7.2 you may need to set:
+#  export LDFLAGS="-L/opt/homebrew/opt/php@7.2/lib"
+#  export CPPFLAGS="-I/opt/homebrew/opt/php@7.2/include"
 
-#export ATUIN_NOBIND="true"
-#eval "$(atuin init zsh)"
+# MongoDB
+export PATH="/opt/homebrew/opt/mongodb-community-shell@4.2/bin:$PATH"
+#source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
-#bindkey '^r' _atuin_search_widget
+## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme

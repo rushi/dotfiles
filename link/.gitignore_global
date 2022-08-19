@@ -76,3 +76,13 @@ git_ignore/
 
 SpikeControllerTest.php
 spike.js
+node_modules.bak
+.vscode
+
+# Temp for our symfony swap
+web/js
+web/cache/
+app/spool
+public/build/*
+*.local
+app/config/password*.yml

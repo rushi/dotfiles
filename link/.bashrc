@@ -1,6 +1,5 @@
-#### FIG ENV VARIABLES ####
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && . "$HOME/.fig/shell/bashrc.pre.bash"
 # Add binaries into the path
 PATH=~/.dotfiles/bin:$PATH
 export PATH
@@ -24,17 +23,15 @@ function dotfiles() {
 
 # Not needed since I don't use bash
 src
-SSH_IP=`echo $SSH_CONNECTION | awk '{print $1}'`
+SSH_IP=$(echo $SSH_CONNECTION | awk '{print $1}')
 if [[ ! -z $SSH_IP ]]; then
-    echo "Hello, remote visitor from $SSH_IP. You are using my bash shell"
-    noti -bkg -m "Macbook login from $SSH_IP" -t "Remote Login"
+  echo "Hello, remote visitor from $SSH_IP. You are using my bash shell"
+  # noti -bkg -m "Macbook login from $SSH_IP" -t "Remote Login"
 fi
 
-
-#### FIG ENV VARIABLES ####
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
-
-
-
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sheval "$(atuin init bash)"
+
+alias rni="kill $(lsof -t -i:8081); rm -rf ios/build/; react-native run-ios"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && . "$HOME/.fig/shell/bashrc.post.bash"

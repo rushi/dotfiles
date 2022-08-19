@@ -1,11 +1,11 @@
 [user]
 	name = Rushi Vishavadia
-	email = rushi@hey.com
+	email = rushi@xola.com
 [core]
   autocrlf = input
   whitespace = fix,trailing-space
   excludesfile = /Users/rushi/.gitignore_global
-	pager = bat -p
+  pager = bat -p
 [apply]
   whitespace = fix
 [branch "master"]
@@ -33,9 +33,6 @@
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [filter "media"]
 	required = true
 	clean = git media clean %f
@@ -58,8 +55,12 @@
     # git branch --sort="-committerdate" --format="%(color:green)%(committerdate:relative)%(color:reset) %(refname:short)"
     lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
     open = browse
-
 [pull]
 	rebase = false
 [init]
 	defaultBranch = main
+[diff]
+	tool = opendiff
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

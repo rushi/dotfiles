@@ -20,6 +20,8 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set autoindent
+set smartindent
 
 " Tab completion
 set wildmode=list:longest,list:full

@@ -13,17 +13,17 @@ umask 022
 # alias tree="tree -C"
 
 # exa
-alias l="exa -l"
+alias l="exa -lh --octal-permissions"
 alias ls="exa"
-alias ll="exa -al"
-alias la="exa -alg"
+alias ll="exa -lh --octal-permissions"
+alias la="exa -alg --octal-permissions"
 alias tree="exa --tree"
+alias lsrt="exa -lrh --sort oldest --octal-permissions "
 
 # Easier navigation: .., ..., -
 alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
-alias lslrt="ls -lr --sort oldest"
 
 # File size
 #alias df="df -h"
@@ -37,8 +37,9 @@ function mdcd() {
   mkdir -p "$@" && cd "$@"
 }
 
-function f() {
-  find . -iname "$@" -print
+function backup() {
+  echo "Renaming to ${1}.bak"
+  mv "$1" "$1.bak"
 }
 
 alias cls="clear"
@@ -47,18 +48,21 @@ alias cd..="cd .."
 alias mate="mate -r"
 # Install `csvlook` for this (pip install)
 alias csv="csvlook"
-alias rrsync="rsync -ravz --progress"
+alias sync="rsync -ravz --progress -h"
 
 export personal="$HOME/Sites/personal"
 export p="$personal" # personal is just so long to type
 export work="$HOME/Sites/work/xola"
 export x2="$HOME/Sites/work/xola/x2"
 
+## ZOXIDE (z command) https://github.com/ajeetdsouza/zoxide#installation
+eval "$(zoxide init zsh)"
+
 # Fast directory switching
 ## required for zsh only
-function precmd () {
-  _z --add "$(pwd -P)"
-}
-_Z_NO_PROMPT_COMMAND=1
-_Z_DATA=~/.dotfiles/caches/.z
-. ~/.dotfiles/libs/z/z.sh
+#function precmd () {
+#  _z --add "$(pwd -P)"
+#}
+#_Z_NO_PROMPT_COMMAND=1
+#_Z_DATA=~/.dotfiles/caches/.z
+#. ~/.dotfiles/libs/z/z.sh
