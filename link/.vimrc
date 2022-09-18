@@ -1,6 +1,6 @@
 set nocompatible
 
-set number
+"set number
 set ruler
 syntax on
 

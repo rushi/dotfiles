@@ -2,7 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Path to your oh-my-zsh configuration.
@@ -69,17 +69,19 @@ src
 
 SSH_IP=$(echo $SSH_CONNECTION | awk '{print $1}')
 if [[ ! -z $SSH_IP ]]; then
-  echo "Hello, remote visitor from $SSH_IP, you are using my zsh shell"
+  echo -e "\nHello, remote visitor from $SSH_IP, you are using my zsh shell\n"
   #   noti -bkg -m "Macbook login from $SSH_IP" -t "Remote Login"
 fi
 
 eval "$(starship init zsh)"
 eval "$(fnm env --use-on-cd)"
 
+##
+## Python (pyenv)
+##
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
 export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
 
@@ -89,8 +91,14 @@ export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
 
 # MongoDB
 export PATH="/opt/homebrew/opt/mongodb-community-shell@4.2/bin:$PATH"
-#source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
-## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+# For Elasticsearch
+# See: https://github.com/Homebrew/homebrew-core/issues/100260
+export JAVA_HOME="/usr/libexec/java_home -v 17"
+export PATH="/opt/homebrew/opt/elasticsearch@6/bin:$PATH"
+
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+  source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+fi

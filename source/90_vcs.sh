@@ -51,7 +51,7 @@ function hubpr() {
 
 function ghpr() {
   if [[ $1 == "--help" ]]; then
-    echo "This will run $fg[magenta]gh pr create -R xola/$(REPO_NAME) -B xola:$(MAIN_BRANCH)${reset_color}"
+    echo "This will run $fg[magenta]gh pr create -R xola/$(REPO_NAME) -B $(MAIN_BRANCH)${reset_color}"
     echo -e "\nUseful options:"
     echo "   -t, --title string   Title for the pull request"
     echo "   -d, --draft          Mark pull request as a draft"
@@ -61,7 +61,7 @@ function ghpr() {
     return
   fi
 
-  gh pr create -R xola/$(REPO_NAME) -B xola:$(MAIN_BRANCH)
+  gh pr create -R xola/$(REPO_NAME) -B $(MAIN_BRANCH)
 }
 
 # add a github remote

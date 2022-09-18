@@ -56,7 +56,9 @@ export work="$HOME/Sites/work/xola"
 export x2="$HOME/Sites/work/xola/x2"
 
 ## ZOXIDE (z command) https://github.com/ajeetdsouza/zoxide#installation
-eval "$(zoxide init zsh)"
+if [[ $SHELL == "/bin/zsh" ]]; then
+    eval "$(zoxide init zsh)"
+fi
 
 # Fast directory switching
 ## required for zsh only

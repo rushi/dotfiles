@@ -2,6 +2,7 @@ export PATH
 
 alias py="python"
 alias composer="php -d memory_limit=-1 ~/.dotfiles/bin/composer"
+alias c="code ."
 
 # Symfony
 alias sf='php bin/console --no-debug'
@@ -39,4 +40,14 @@ function getIpForEC2Instance() {
 function ec2() {
     # TODO: Keys & Profile
     ssh -i $1 ubuntu@$(getIpForEC2Instance $1 $2)
+}
+
+function lint() {
+    # Check if a file exists and is not empty
+    FILE="./git_ignore/sanitize.sh"
+    if [ -f "$FILE" ]; then
+        $FILE
+    else
+        echo "File $FILE does not exist"
+    fi
 }

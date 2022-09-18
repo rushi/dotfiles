@@ -4,7 +4,7 @@
 [core]
   autocrlf = input
   whitespace = fix,trailing-space
-  excludesfile = /Users/rushi/.gitignore_global
+	excludesfile = /Users/rushi/.gitignore_global
   pager = bat -p
 [apply]
   whitespace = fix
@@ -30,6 +30,7 @@
   log = true
 [push]
 	default = current
+	autoSetupReport = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

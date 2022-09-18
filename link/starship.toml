@@ -29,22 +29,56 @@ $custom\
 $cmd_duration\
 $line_break\
 $jobs\
-$time\
 $status\
 $shell\
-$character"""
+$character\
+$fill\
+$time
+"""
+
+[line_break]
+disabled = true
+
+[fill]
+symbol = " "
+style = "bold green"
 
 [character]
 success_symbol = "[➜](bold green)"
 error_symbol = "[➜](bold red)"
 
+[cmd_duration]
+disabled = false
+min_time = 1999 # Only show time more than 2 seconds
+format = " took [$duration](green)"
+
+[status]
+style = "green"
+symbol = "❗️"
+success_symbol = "✔"
+format = ' [$symbol$common_meaning$signal_name$maybe_int]($style) '
+map_symbol = true
+disabled = false
+
+[time]
+disabled = false
+format = '[\[$time\]]($style) '
+time_format = "%T"
+style="dimmed white"
+# utc_time_offset = "-5"
+# time_range = "10:00:00-14:00:00"
+
 [git_branch]
 always_show_remote = true
 style = "green"
-format = "on [$symbol$branch]($style) "
+# symbol = "🕊 "
+# format = "on [$symbol$branch]($style) "
+format = "on [$branch]($style) "
 
 [nodejs]
 style = "green"
+format = "using [$version]($style)"
+detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts", "tsx", "jsx"]
 
 [directory]
 truncation_length = 3
