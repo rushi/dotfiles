@@ -52,7 +52,10 @@ function hubpr() {
 function ghpr() {
   if [[ $1 == "--help" ]]; then
     echo "This will run $fg[magenta]gh pr create -R xola/$(REPO_NAME) -B $(MAIN_BRANCH)${reset_color}"
-    echo -e "\nUseful options:"
+    echo -e "\nYour options:"
+    echo "   \$1 The user. This should be the github username, not remote"
+    echo "   \$2 The branch"
+    echo -e "\nIf you want to invoke gh directly, you can use:"
     echo "   -t, --title string   Title for the pull request"
     echo "   -d, --draft          Mark pull request as a draft"
     echo "   -H, --head branch    The branch that contains commits for your pull request (default: current branch)"
@@ -61,7 +64,20 @@ function ghpr() {
     return
   fi
 
-  gh pr create -R xola/$(REPO_NAME) -B $(MAIN_BRANCH)
+  if [[ -z $1 ]]; then
+    DEST_USER="xola"
+  else
+    DEST_USER=$1
+  fi
+
+  if [[ -z $2 ]]; then
+    DEST_BRANCH=$(MAIN_BRANCH)
+  else
+    DEST_BRANCH=$2
+  fi
+
+  echo -e "PR to $fg[green]${DEST_USER}/"$(REPO_NAME) "${reset_color}on$fg[green]" ${DEST_BRANCH}${reset_color}
+  gh pr create -R ${DEST_USER}/$(REPO_NAME) -B ${DEST_BRANCH}
 }
 
 # add a github remote
@@ -84,6 +100,26 @@ function ghfetch() {
 
   git fetch "$1" "$2"
   git checkout -t "$1/$2"
+  RETVAL=$?
+  if [[ RETVAL -eq 128 ]]; then
+    git checkout $2
+  fi
+}
+
+function ghnew() {
+  if [[ "${#@}" -ne 1 ]]; then
+    echo "Usage: ghnew [BRANCH]"
+    return 1
+  fi
+
+  echo "Checking out $(MAIN_BRANCH)"
+  git checkout $(MAIN_BRANCH)
+  # Check if exit code was zero
+  if [[ $? -eq 0 ]]; then
+    echo "Pulling latest $(MAIN_BRANCH) from xola"
+    git pull xola $(MAIN_BRANCH)
+    git checkout -b "$1"
+  fi
 }
 
 #

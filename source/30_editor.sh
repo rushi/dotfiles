@@ -14,6 +14,7 @@ export VISUAL="$EDITOR"
 # Prevent less from clearing the screen while still showing colors.
 # export LESS="-FXRMgIsw"
 
+alias c="code ."
 alias vi="vim"
 alias cat="bat -p"
 # bat has same functionoality

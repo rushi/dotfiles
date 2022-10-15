@@ -18,12 +18,14 @@ alias ls="exa"
 alias ll="exa -lh --octal-permissions"
 alias la="exa -alg --octal-permissions"
 alias tree="exa --tree"
+alias lslrt="exa -lrh --sort oldest --octal-permissions "
 alias lsrt="exa -lrh --sort oldest --octal-permissions "
 
 # Easier navigation: .., ..., -
 alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
+alias cd..="cd .."
 
 # File size
 #alias df="df -h"
@@ -43,7 +45,6 @@ function backup() {
 }
 
 alias cls="clear"
-alias cd..="cd .."
 # Open file in textmate and add it to the recent files menu
 alias mate="mate -r"
 # Install `csvlook` for this (pip install)
@@ -57,7 +58,7 @@ export x2="$HOME/Sites/work/xola/x2"
 
 ## ZOXIDE (z command) https://github.com/ajeetdsouza/zoxide#installation
 if [[ $SHELL == "/bin/zsh" ]]; then
-    eval "$(zoxide init zsh)"
+  eval "$(zoxide init zsh)"
 fi
 
 # Fast directory switching

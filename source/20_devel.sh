@@ -2,7 +2,6 @@ export PATH
 
 alias py="python"
 alias composer="php -d memory_limit=-1 ~/.dotfiles/bin/composer"
-alias c="code ."
 
 # Symfony
 alias sf='php bin/console --no-debug'
@@ -24,23 +23,13 @@ function clearspool() {
 }
 
 ## NODEJS
+alias nps="npm start"
+
 alias npr="npm --silent run"
 alias npmls="npm ls --depth=0"
-
-function slsdeploy() {
-    set -x
-    npx serverless deploy --stage=$1 --env=$1 --secretsFile=config/local-$1.json
-    set +x
-}
-
-function getIpForEC2Instance() {
-    aws --profile $1 ec2 describe-instances --instance-ids $2 --query 'Reservations[*].Instances[*].PublicIpAddress' --output text
-}
-
-function ec2() {
-    # TODO: Keys & Profile
-    ssh -i $1 ubuntu@$(getIpForEC2Instance $1 $2)
-}
+alias npms="npm -w seller"
+alias npmrs="npm --silent run -w seller"
+alias npxs="npx -w seller"
 
 function lint() {
     # Check if a file exists and is not empty

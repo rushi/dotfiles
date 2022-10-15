@@ -102,3 +102,12 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
   [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
   source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 fi
+
+# bun completions
+[ -s "/Users/rushi/.bun/_bun" ] && source "/Users/rushi/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
