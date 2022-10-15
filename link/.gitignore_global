@@ -50,7 +50,7 @@
 .Trashes
 
 # Windows image file caches
-Thumbs.db 
+Thumbs.db
 
 # Folder config file
 Desktop.ini
@@ -78,7 +78,6 @@ SpikeControllerTest.php
 spike.js
 node_modules.bak
 .vscode
-
 # Temp for our symfony swap
 web/js
 web/cache/

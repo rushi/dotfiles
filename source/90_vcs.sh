@@ -31,6 +31,10 @@ function gcod() {
   git checkout $(MAIN_BRANCH)
 }
 
+function gcod() {
+  git checkout $(MAIN_BRANCH)
+}
+
 function glxm() {
   echo "$fg[magenta]Pulling from xola $(MAIN_BRANCH)${reset_color}"
   git pull xola $(MAIN_BRANCH)

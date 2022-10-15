@@ -40,3 +40,12 @@ function lint() {
         echo "File $FILE does not exist"
     fi
 }
+
+function getIpForEC2Instance() {
+    aws --profile $1 ec2 describe-instances --instance-ids $2 --query 'Reservations[*].Instances[*].PublicIpAddress' --output text
+}
+
+function ec2() {
+    # TODO: Keys & Profile
+    ssh -i $1 ubuntu@$(getIpForEC2Instance $1 $2)
+}
