@@ -8,7 +8,7 @@ function getIpForEC2Instance() {
     aws --profile $1 ec2 describe-instances --instance-ids $2 --query 'Reservations[*].Instances[*].PublicIpAddress' --output text
 }
 
-function ec2() {
-    # TODO: Keys & Profile
-    ssh -i $1 ubuntu@$(getIpForEC2Instance $1 $2)
+function ec2Test() {
+    IP=$(getIpForEC2Instance xola-ci $1)
+    ssh -i ~/.ssh/keys/test-servers.pem ubuntu@$IP
 }

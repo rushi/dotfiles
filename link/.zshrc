@@ -18,7 +18,7 @@ ZSH=$HOME/.oh-my-zsh
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="false"
 
 # Uncomment to change how often before auto-updates occur? (in days)
 export UPDATE_ZSH_DAYS=30
@@ -30,7 +30,7 @@ export UPDATE_ZSH_DAYS=30
 # DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
@@ -82,15 +82,25 @@ eval "$(fnm env --use-on-cd)"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+##
+## PHP 7.4 -- Enable/Disable along with 7.2 as needed
+##
+# export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
+# export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
+
+##
+## PHP 7.2 -- Enable/Disable along with 7.4 as needed
+##
 export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
 
-# For compilers to find php@7.2 you may need to set:
-#  export LDFLAGS="-L/opt/homebrew/opt/php@7.2/lib"
-#  export CPPFLAGS="-I/opt/homebrew/opt/php@7.2/include"
+# For compilers to find php@7.4 you may need to set:
+#  export LDFLAGS="-L/opt/homebrew/opt/php@7.4/lib"
+#  export CPPFLAGS="-I/opt/homebrew/opt/php@7.4/include"
 
 # MongoDB
-export PATH="/opt/homebrew/opt/mongodb-community-shell@4.2/bin:$PATH"
+export PATH="/opt/homebrew/opt/mongodb-community-shell@4.4/bin:$PATH"
 
 # For Elasticsearch
 # See: https://github.com/Homebrew/homebrew-core/issues/100260
@@ -104,10 +114,14 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 fi
 
 # bun completions
-[ -s "/Users/rushi/.bun/_bun" ] && source "/Users/rushi/.bun/_bun"
+# [ -s "/Users/rushi/.bun/_bun" ] && source "/Users/rushi/.bun/_bun"
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
+# export OPENAI_API_KEY=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
+export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=true
+
+# source /Users/rushi/.config/broot/launcher/bash/br

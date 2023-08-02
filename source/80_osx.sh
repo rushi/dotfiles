@@ -5,11 +5,7 @@
 PATH=/usr/local/bin:$(path_remove /usr/local/bin)
 # Add Homebrew path
 PATH=/usr/local/sbin:$PATH
-PATH=/Applications/MAMP/bin/php/current_php/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 export PATH
-
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-export MANPATH
 
 alias ql="quicklook"
 
@@ -17,8 +13,10 @@ alias ql="quicklook"
 # eval "$(lesspipe.sh)"
 
 alias pf="open -a 'Path Finder'"
-alias mysql="mysql --socket=/Applications/MAMP/tmp/mysql/mysql.sock"
 alias top="htop" # Install this through homebrew
 alias bs="brew services"
 
-#alias rm="trash"
+# npm install --global trash-cli
+alias rm="trash"
+HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=true
+HOMEBREW_NO_AUTO_UPDATE=true

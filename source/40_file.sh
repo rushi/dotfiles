@@ -39,6 +39,7 @@ function mdcd() {
   mkdir -p "$@" && cd "$@"
 }
 
+alias bak="backup"
 function backup() {
   echo "Renaming to ${1}.bak"
   mv "$1" "$1.bak"

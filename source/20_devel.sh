@@ -7,19 +7,22 @@ alias composer="php -d memory_limit=-1 ~/.dotfiles/bin/composer"
 alias sf='php bin/console --no-debug'
 alias sfcl='sf cache:clear'
 alias sfapc='sf apc:clear'
-alias xpu='xolaphpunit'
-alias flushlogs='cat /dev/null > var/logs/*.log;wc -l var/logs/*.log'
+alias xpu='APP_ENV=test xolaphpunit'
+alias flushlogs='cat /dev/null > var/log/*.log;wc -l var/log/*.log'
 
 # run unit tests
 function xolaphpunit() {
-    vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist --debug -d memory_limit=4096M "$@"
+    APP_ENV=test
+    echo 'Running vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist -v -d memory_limit=4096M "$@"'
+    vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist -v -d memory_limit=4096M "$@"
 }
 
 # Remove stuff from symfony's email spool
 function clearspool() {
-    rm -rf app/spool/default/
-    mkdir -p app/spool/default/
-    ls -a app/spool/default/
+    # echo "I think this wont work after changing to symfony 4";
+    rm -rf var/spool/default/
+    mkdir -p var/spool/default/
+    ls -a var/spool/default/
 }
 
 ## NODEJS
@@ -41,11 +44,11 @@ function lint() {
     fi
 }
 
-function getIpForEC2Instance() {
-    aws --profile $1 ec2 describe-instances --instance-ids $2 --query 'Reservations[*].Instances[*].PublicIpAddress' --output text
-}
+# function getIpForEC2Instance() {
+#     aws --profile $1 ec2 describe-instances --instance-ids $2 --query 'Reservations[*].Instances[*].PublicIpAddress' --output text
+# }
 
-function ec2() {
-    # TODO: Keys & Profile
-    ssh -i $1 ubuntu@$(getIpForEC2Instance $1 $2)
-}
+# function ec2() {
+#     # TODO: Keys & Profile
+#     ssh -i $1 ubuntu@$(getIpForEC2Instance $1 $2)
+# }

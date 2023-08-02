@@ -35,3 +35,5 @@ alias rni="kill $(lsof -t -i:8081); rm -rf ios/build/; react-native run-ios"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && . "$HOME/.fig/shell/bashrc.post.bash"
+PATH=~/.console-ninja/.bin:$PATH
+source /Users/rushi/.config/broot/launcher/bash/br
