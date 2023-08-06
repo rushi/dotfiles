@@ -1,3 +1,5 @@
+# https://starship.rs/config/#prompt
+
 format = """
 $username\
 $hostname\
@@ -10,6 +12,7 @@ $git_commit\
 $git_state\
 $git_metrics\
 $hg_branch\
+$container\
 $docker_context\
 $package\
 $java\
@@ -23,21 +26,21 @@ $swift\
 $terraform\
 $vagrant\
 $nix_shell\
+$battery\
 $memory_usage\
 $env_var\
 $custom\
 $cmd_duration\
-$line_break\
 $jobs\
 $status\
-$shell\
+$time\
 $character\
-$fill\
-$time
 """
 
+# add_newline = true
+
 [line_break]
-disabled = true
+disabled = false
 
 [fill]
 symbol = " "
@@ -45,43 +48,66 @@ style = "bold green"
 
 [character]
 success_symbol = "[➜](bold green)"
-error_symbol = "[➜](bold red)"
+error_symbol = "[✗](bold red)"
+
+[battery]
+format = ' [Battery: $symbol$percentage]($style) '
+
+[[battery.display]]
+threshold = 30
+style = 'bold bg:red'
 
 [cmd_duration]
 disabled = false
-min_time = 1999 # Only show time more than 2 seconds
-format = " took [$duration](green)"
+min_time = 1999                      # Only show time more than 2 seconds
+format = " took [$duration](bg:red)"
+
+[container]
+disabled = false
+
+# [status]
+# style = "red"
+# # symbol = "❗️"
+# success_symbol = "✔"
+# # format = ' [$symbol$common_meaning$signal_name$maybe_int]($style) '
+# # format = ' [$common_meaning$signal_name$maybe_int]($style) ' # Note: Adding $symbol causes newline issues
+# # format = '[ $symbol exit code: ($maybe_int) $status]($style)'
+# format = ' [\[$maybe_int\]]($style) '
+# map_symbol = true
+# disabled = false
 
 [status]
-style = "green"
-symbol = "❗️"
-success_symbol = "✔"
-format = ' [$symbol$common_meaning$signal_name$maybe_int]($style) '
-map_symbol = true
+style = 'bg:blue'
+symbol = '🔴 '
+# success_symbol = '🟢 SUCCESS'
+format = ' [\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+# map_symbol = true
 disabled = false
 
 [time]
 disabled = false
-format = '[\[$time\]]($style) '
+format = ' [\[$time\]]($style) '
 time_format = "%T"
-style="dimmed white"
+style = "dimmed white"
 # utc_time_offset = "-5"
 # time_range = "10:00:00-14:00:00"
 
 [git_branch]
 always_show_remote = true
-style = "green"
-# symbol = "🕊 "
-# format = "on [$symbol$branch]($style) "
-format = "on [$branch]($style) "
+# style = "green"
+symbol = "🪵 "
+format = "on [$symbol$branch]($style) "
+# format = "on [$branch]($style) "
 
 [nodejs]
-style = "green"
+style = "bold green"
+not_capable_style = "bold bg:red"
+version_format = "v${major}"
 format = "using [$version]($style)"
 detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts", "tsx", "jsx"]
 
 [directory]
-truncation_length = 3
+truncation_length = 4
 truncate_to_repo = false
 style = "cyan"
 format = "[$path]($style)[$read_only]($read_only_style) "
@@ -100,4 +126,11 @@ style = "bold white"
 disabled = false
 
 [package]
-disabled = true
+disabled = false
+
+[memory_usage]
+disabled = false
+threshold = 90
+style = "bold dimmed white"
+symbol = "Ram: "
+format = ' \($symbol[${ram_pct}]($style)\) '

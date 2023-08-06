@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -12,7 +12,8 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="steeef"
+# NOTE: THIS WILL NOT WORK BECAUSE STARSHIP DOES PROMPT
+# ZSH_THEME="random"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -21,13 +22,13 @@ ZSH=$HOME/.oh-my-zsh
 DISABLE_AUTO_UPDATE="false"
 
 # Uncomment to change how often before auto-updates occur? (in days)
-export UPDATE_ZSH_DAYS=30
+export UPDATE_ZSH_DAYS=1
 
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
+DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
@@ -107,11 +108,12 @@ export PATH="/opt/homebrew/opt/mongodb-community-shell@4.4/bin:$PATH"
 export JAVA_HOME="/usr/libexec/java_home -v 17"
 export PATH="/opt/homebrew/opt/elasticsearch@6/bin:$PATH"
 
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-  source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
-fi
+# if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+#   # echo "\tSourcing p10k"
+#   # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+#   [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#   source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+# fi
 
 # bun completions
 # [ -s "/Users/rushi/.bun/_bun" ] && source "/Users/rushi/.bun/_bun"
@@ -119,8 +121,8 @@ fi
 # bun
 # export BUN_INSTALL="$HOME/.bun"
 # export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
-export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c/bin:$PATH" # bin
+export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH" # sbin
 # export OPENAI_API_KEY=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
 export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=true
 
