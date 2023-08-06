@@ -77,6 +77,11 @@ fi
 eval "$(starship init zsh)"
 eval "$(fnm env --use-on-cd)"
 
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+  export PS1="$PS1
+"
+fi
+
 ##
 ## Python (pyenv)
 ##
