@@ -59,8 +59,8 @@ style = 'bold bg:red'
 
 [cmd_duration]
 disabled = false
-min_time = 1999                      # Only show time more than 2 seconds
-format = " took [$duration](bg:red)"
+min_time = 2999                   # Only show time more than 3 seconds
+format = " took [$duration](red)"
 
 [container]
 disabled = false
