@@ -12,3 +12,13 @@ function ec2Test() {
     IP=$(getIpForEC2Instance xola-ci $1)
     ssh -i ~/.ssh/keys/test-servers.pem ubuntu@$IP
 }
+
+um()
+{
+    glow ~/.dotfiles/umm/*$1*.md
+}
+
+umm()
+{
+    glow ~/.dotfiles/umm/*$1*.md
+}
