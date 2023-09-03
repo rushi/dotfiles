@@ -52,3 +52,7 @@ function lint() {
 #     # TODO: Keys & Profile
 #     ssh -i $1 ubuntu@$(getIpForEC2Instance $1 $2)
 # }
+
+function init_npm() {
+    zx ./initNodeProject.mjs
+}
