@@ -22,7 +22,7 @@ ZSH=$HOME/.oh-my-zsh
 DISABLE_AUTO_UPDATE="false"
 
 # Uncomment to change how often before auto-updates occur? (in days)
-export UPDATE_ZSH_DAYS=1
+export UPDATE_ZSH_DAYS=15
 
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -132,3 +132,11 @@ export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH" # sbin
 export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=true
 
 # source /Users/rushi/.config/broot/launcher/bash/br
+
+# pnpm
+export PNPM_HOME="/Users/rushi/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
