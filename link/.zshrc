@@ -41,7 +41,7 @@ DISABLE_CORRECTION="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras)
+plugins=(git git-extras history)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -55,7 +55,7 @@ function src() {
     source "$HOME/.dotfiles/source/$1.sh"
   else
     for file in ~/.dotfiles/source/*.sh; do
-      #echo "Sourcing $file"
+      # echo "Sourcing $file"
       source "$file"
     done
   fi
@@ -140,3 +140,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -13,12 +13,15 @@ function ec2Test() {
     ssh -i ~/.ssh/keys/test-servers.pem ubuntu@$IP
 }
 
-um()
-{
+um() {
     glow ~/.dotfiles/umm/*$1*.md
 }
 
-umm()
-{
+umm() {
     glow ~/.dotfiles/umm/*$1*.md
 }
+
+alias d="docker"
+alias dr="docker run --rm"
+alias dc="docker compose"
+alias ag="echo 'Using rg instead';rg"

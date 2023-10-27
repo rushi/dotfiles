@@ -85,3 +85,6 @@ app/spool
 public/build/*
 *.local
 app/config/password*.yml
+
+# Rip Grep
+.rgignore

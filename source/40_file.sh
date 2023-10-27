@@ -39,10 +39,13 @@ function mdcd() {
   mkdir -p "$@" && cd "$@"
 }
 
+# Show markdown files in CLI
+alias md="glow"
+
 alias bak="backup"
 function backup() {
   echo "Renaming to ${1}.bak"
-  mv "$1" "$1.bak"
+  cp -r "$1" "$1.bak"
 }
 
 alias cls="clear"
@@ -61,12 +64,3 @@ export x2="$HOME/Sites/work/xola/x2"
 if [[ $SHELL == "/bin/zsh" ]]; then
   eval "$(zoxide init zsh)"
 fi
-
-# Fast directory switching
-## required for zsh only
-#function precmd () {
-#  _z --add "$(pwd -P)"
-#}
-#_Z_NO_PROMPT_COMMAND=1
-#_Z_DATA=~/.dotfiles/caches/.z
-#. ~/.dotfiles/libs/z/z.sh
