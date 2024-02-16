@@ -88,3 +88,4 @@ app/config/password*.yml
 
 # Rip Grep
 .rgignore
+

@@ -61,10 +61,6 @@ merge = refs/heads/master
 # changed = green
 # untracked = cyan
 
-[push]
-	default = matching
-autoSetupRemote = true
-
 [filter "media"]
 required = true
 clean = git media clean %f
@@ -85,9 +81,6 @@ process = git-lfs filter-process
 [alias]
 open = browse
 
-[pull]
-rebase = false
-
 [init]
 defaultBranch = main
 
@@ -98,3 +91,7 @@ defaultBranch = main
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[pull]
+	rebase = false
+[push]
+	autoSetupRemote = true
