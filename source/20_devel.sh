@@ -56,3 +56,22 @@ function lint() {
 function init_npm() {
     zx ./initNodeProject.mjs
 }
+
+function uikit() {
+    if [ ! -f "./package.json" ]; then
+        chalk -t 'Cannot install UI Kit. {red.bold ./package.json} does not exist in the current directory.'
+        return
+    fi
+
+    if [ -z "$1" ]; then
+        chalk -t 'Installing {green @xola/ui-kit@latest} from NPM'
+        npm install @xola/ui-kit@latest --save
+    elif [[ -n "$1" && -n "$2" ]]; then
+        # npm install https://github.com/rushi/ui-kit\#react-upgrade --save
+        chalk -t "Installing from {bold Github} {green $1/ui-kit Branch: $2}"
+        npm install "https://github.com/$1/ui-kit\#$2" --save
+    else
+        chalk -t 'Installing {green $1} from NPM'
+        npm install "$1" --save
+    fi
+}
