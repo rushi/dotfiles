@@ -106,7 +106,9 @@ export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
 #  export CPPFLAGS="-I/opt/homebrew/opt/php@7.4/include"
 
 # MongoDB
-export PATH="/opt/homebrew/opt/mongodb-community-shell@4.4/bin:$PATH"
+#export PATH="/opt/homebrew/opt/mongodb-community-shell@4.4/bin:$PATH"
+#export PATH="/opt/homebrew/opt/mongodb-community@5.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/mongodb-community@6.0/bin:$PATH"
 
 # For Elasticsearch
 # See: https://github.com/Homebrew/homebrew-core/issues/100260
@@ -143,3 +145,4 @@ esac
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export TEALDEER_CONFIG_DIR=~/.config/tealdeer
