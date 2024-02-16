@@ -11,3 +11,6 @@ bin/ngrok
 libs/hg-prompt/prompt.pyc
 phpunit*
 bin/node*
+
+node_modules
+sanitize.mjs
