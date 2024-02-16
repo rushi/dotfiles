@@ -11,3 +11,23 @@ function ps_search() {
 }
 
 alias ps\?="ps_search"
+alias bwatch="batwatch --no-clear --color --style=plain --command"
+
+alias bathelp='bat --plain --language=help'
+help() {
+    # TODO: "help git commit" doesn't work due to ${*}
+    setopt null_glob
+
+    filename="${*}"
+    for file in "$filename"*; do
+        if [[ -f $file ]]; then
+            chalk -t "Found file: {green $file}"
+            "./${file}" --help 2>&1 | bathelp
+            unsetopt null_glob
+            return
+        fi
+    done
+
+    "$filename" --help 2>&1 | bathelp
+    unsetopt null_glob
+}
