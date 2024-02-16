@@ -30,9 +30,6 @@ alias nps="npm start"
 
 alias npr="npm --silent run"
 alias npmls="npm ls --depth=0"
-alias npms="npm -w seller"
-alias npmrs="npm --silent run -w seller"
-alias npxs="npx -w seller"
 
 function lint() {
     # Check if a file exists and is not empty
@@ -40,7 +37,8 @@ function lint() {
     if [ -f "$FILE" ]; then
         $FILE
     else
-        echo "File $FILE does not exist"
+        echo "File $FILE does not exist. Running npm run lint:fix"
+        npm run lint:fix
     fi
 }
 
