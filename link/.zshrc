@@ -43,7 +43,10 @@ DISABLE_CORRECTION="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git git-extras history)
 
-source $ZSH/oh-my-zsh.sh
+# When pre-commit hooks are being run through sh, this fails
+if [[ -z $GIT_AUTHOR_EMAIL ]]; then
+  source $ZSH/oh-my-zsh.sh
+fi
 
 # Customize to your needs...
 PATH=~/.dotfiles/bin:$PATH
@@ -55,8 +58,12 @@ function src() {
     source "$HOME/.dotfiles/source/$1.sh"
   else
     for file in ~/.dotfiles/source/*.sh; do
-      # echo "Sourcing $file"
-      source "$file"
+      # When pre-commit hooks are being run through sh, this fails because my code uses ZSH specific
+      if [[ -z $GIT_AUTHOR_EMAIL ]]; then
+        #echo "Email is $GIT_AUTHOR_EMAIL"
+        #echo "Sourcing $file"
+        source "$file"
+      fi
     done
   fi
 }
@@ -74,13 +81,15 @@ if [[ ! -z $SSH_IP ]]; then
   #   noti -bkg -m "Macbook login from $SSH_IP" -t "Remote Login"
 fi
 
-eval "$(starship init zsh)"
+if [[ -z $GIT_AUTHOR_EMAIL ]]; then
+  eval "$(starship init zsh)"
+fi
 eval "$(fnm env --use-on-cd)"
 
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-  export PS1="$PS1
-"
-fi
+# if [[ $ZED_TERM == "true" ]]; then
+#     export PS1="$PS1
+# "
+# fi
 
 ##
 ## Python (pyenv)
@@ -115,12 +124,12 @@ export PATH="/opt/homebrew/opt/mongodb-community@6.0/bin:$PATH"
 export JAVA_HOME="/usr/libexec/java_home -v 17"
 export PATH="/opt/homebrew/opt/elasticsearch@6/bin:$PATH"
 
-# if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-#   # echo "\tSourcing p10k"
-#   # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#   [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-#   source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
-# fi
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+  # echo "\tSourcing p10k"
+  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+  source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+fi
 
 # bun completions
 # [ -s "/Users/rushi/.bun/_bun" ] && source "/Users/rushi/.bun/_bun"
@@ -128,7 +137,7 @@ export PATH="/opt/homebrew/opt/elasticsearch@6/bin:$PATH"
 # bun
 # export BUN_INSTALL="$HOME/.bun"
 # export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="/opt/homebrew/opt/icu4c/bin:$PATH" # bin
+export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"  # bin
 export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH" # sbin
 # export OPENAI_API_KEY=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
 export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=true
@@ -138,11 +147,17 @@ export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=true
 # pnpm
 export PNPM_HOME="/Users/rushi/Library/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export TEALDEER_CONFIG_DIR=~/.config/tealdeer
+
+# Set current folder as tab title
+function set_win_title() {
+  echo -ne "\033]0; $(basename "$PWD") \007"
+}
+starship_precmd_user_func="set_win_title"
