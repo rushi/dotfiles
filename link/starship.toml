@@ -14,30 +14,29 @@ $git_metrics\
 $hg_branch\
 $container\
 $docker_context\
-$package\
 $java\
+$bun\
 $nodejs\
+$env_var\
 $php\
 $python\
-$red\
 $ruby\
 $rust\
 $swift\
 $terraform\
 $vagrant\
-$nix_shell\
 $battery\
 $memory_usage\
-$env_var\
-$custom\
 $cmd_duration\
-$jobs\
 $status\
+$sudo\
 $time\
 $character\
 """
 
-# add_newline = true
+# (@$line_break)
+
+add_newline = true
 
 [line_break]
 disabled = false
@@ -51,19 +50,23 @@ success_symbol = "[➜](bold green)"
 error_symbol = "[✗](bold red)"
 
 [battery]
-format = ' [Battery: $symbol$percentage]($style) '
+format = ' [Battery: $symbol$percentage]($style)'
 
 [[battery.display]]
-threshold = 30
+threshold = 20
 style = 'bold bg:red'
 
 [cmd_duration]
 disabled = false
 min_time = 2999                   # Only show time more than 3 seconds
 format = " took [$duration](red)"
+show_milliseconds = true
 
 [container]
 disabled = false
+
+[docker_context]
+disabled = true
 
 # [status]
 # style = "red"
@@ -80,9 +83,12 @@ disabled = false
 style = 'bg:blue'
 symbol = '🔴 '
 # success_symbol = '🟢 SUCCESS'
-format = ' [\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+format = ' [\[$symbol$common_meaning$signal_name$maybe_int\]]($style)'
 # map_symbol = true
 disabled = false
+
+[sudo]
+disabled = true
 
 [time]
 disabled = false
@@ -93,18 +99,52 @@ style = "dimmed white"
 # time_range = "10:00:00-14:00:00"
 
 [git_branch]
+disabled = false
 always_show_remote = true
-# style = "green"
 symbol = "🪵 "
-format = "on [$symbol$branch]($style) "
-# format = "on [$branch]($style) "
+format = "on [$symbol$remote_name:$branch]($style) "
+
+[git_commit]
+disabled = false
+only_detached = false
+style = 'black dimmed'
+
+[git_metrics]
+disabled = false
+added_style = 'dimmed'
+deleted_style = 'dimmed'
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+# format = '([\[$all_status$ahead_behind\]]($style) )'
 
 [nodejs]
 style = "bold green"
 not_capable_style = "bold bg:red"
 version_format = "v${major}"
-format = "using [$version]($style)"
+format = 'using $symbol [$version]($style)'
+symbol = "📦"
 detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts", "tsx", "jsx"]
+
+[env_var.NODE_ENV]
+style = "cyan"
+format = ' NODE_ENV=[$env_value]($style)'
+description = 'Node JS environment defined by NODE_ENV'
+
+[env_var.AWS_PROFILE]
+style = "bold yellow"
+format = ' AWS_PROFILE=[$env_value]($style)'
+description = 'AWS Profile'
+
+# [aws]
+# format = ' [$symbol($profile )]($style)'
+# # style = 'bold blue'
+# symbol = '🅰 '
+# disabled = true
+
+# [aws.profile_aliases]
+# xola-ci = 'CI Profile'
+
+[php]
+format = " [$symbol($version)]($style)"
 
 [directory]
 truncation_length = 4
@@ -129,8 +169,8 @@ disabled = false
 disabled = false
 
 [memory_usage]
-disabled = false
-threshold = 90
-style = "bold dimmed white"
+disabled = true
+threshold = 22
+style = "bold dimmed red"
 symbol = "Ram: "
 format = ' \($symbol[${ram_pct}]($style)\) '
