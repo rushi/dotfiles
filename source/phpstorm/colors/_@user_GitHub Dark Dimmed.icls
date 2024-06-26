@@ -1,0 +1,13 @@
+<scheme name="_@user_GitHub Dark Dimmed" version="142" parent_scheme="Darcula">
+  <option name="FONT_SCALE" value="1.0" />
+  <metaInfo>
+    <property name="ide">PhpStorm</property>
+    <property name="ideVersion">2024.1.1.0.0</property>
+    <property name="originalScheme">GitHub Dark Dimmed</property>
+    <property name="partialSave">true</property>
+    <property name="pluginId">club.nutsoft.Github3Theme</property>
+  </metaInfo>
+  <option name="CONSOLE_FONT_NAME" value="CommitMono" />
+  <option name="CONSOLE_FONT_SIZE" value="13" />
+  <option name="CONSOLE_LINE_SPACING" value="1.2" />
+</scheme>
