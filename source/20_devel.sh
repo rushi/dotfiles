@@ -25,12 +25,6 @@ function clearspool() {
     ls -a var/spool/default/
 }
 
-## NODEJS
-alias nps="npm start"
-
-alias npr="npm --silent run"
-alias npmls="npm ls --depth=0"
-
 function lint() {
     # Check if a file exists and is not empty
     FILE="./git_ignore/sanitize.sh"
@@ -51,6 +45,10 @@ function lint() {
 #     ssh -i $1 ubuntu@$(getIpForEC2Instance $1 $2)
 # }
 
+##
+## NODEJS
+##
+
 function init_npm() {
     zx ./initNodeProject.mjs
 }
@@ -58,6 +56,13 @@ function init_npm() {
 function uikit() {
     if [ ! -f "./package.json" ]; then
         chalk -t 'Cannot install UI Kit. {red.bold ./package.json} does not exist in the current directory.'
+        return
+    fi
+
+    rg --quiet workspaces package.json
+    if [[ $? -eq 0 ]]; then
+        chalk -t 'This is an {red.bold npm workspace}, you probably do not want to install UI Kit here'
+        bat package.json
         return
     fi
 
@@ -73,3 +78,27 @@ function uikit() {
         npm install "$1" --save
     fi
 }
+alias ui-kit="uikit"
+
+function npm_start() {
+    if [ ! -f "./package.json" ]; then
+        chalk -t 'Cannot start {red.bold ./package.json} does not exist in the current directory.'
+        return
+    fi
+
+    npm start
+}
+
+function npm_dev() {
+    if [ ! -f "./package.json" ]; then
+        chalk -t 'Cannot run dev {red.bold ./package.json} does not exist in the current directory.'
+        return
+    fi
+
+    npm run dev
+}
+
+alias s="npm_start"
+alias dev="npm_dev"
+alias npr="npm --silent run"
+alias npmls="npm ls --depth=0"
