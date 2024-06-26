@@ -16,6 +16,8 @@ alias gcalint="git commit -am '🧹 Lint'"
 alias gclint="git commit -m '🧹 Lint'"
 alias hpox="hub push origin,xola"
 
+export DELTA_PAGER=less
+
 function MAIN_BRANCH() {
   echo $(git branch -l development master main | head -1 | sed 's/^* //')
 }
