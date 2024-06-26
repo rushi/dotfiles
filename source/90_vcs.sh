@@ -38,10 +38,6 @@ function gcod() {
   git checkout "$(MAIN_BRANCH)"
 }
 
-function gcod() {
-  git checkout "$(MAIN_BRANCH)"
-}
-
 function glxm() {
   echo "${fg[magenta]}Pulling from xola $(MAIN_BRANCH)${reset_color}"
   git pull xola "$(MAIN_BRANCH)"
@@ -61,6 +57,7 @@ function hubpr() {
 }
 
 function ghpr() {
+  # // TODO: PR with flag
   if [[ $1 == "--help" ]]; then
     echo "This will run ${fg[magenta]}gh pr create -R xola/$(REPO_NAME) -B $(MAIN_BRANCH)${reset_color}"
     echo -e "\nYour options:"
@@ -76,7 +73,7 @@ function ghpr() {
   fi
 
   if [[ $1 == "view" ]]; then
-    ghview
+    ghview -o
     return
   fi
 
@@ -125,6 +122,7 @@ function ghfetch() {
 function ghnew() {
   if [[ "${#@}" -ne 1 ]]; then
     echo "Usage: ghnew [BRANCH]"
+    echo "Creates a new branch from $(MAIN_BRANCH)"
     return 1
   fi
 
@@ -139,17 +137,38 @@ function ghnew() {
 }
 
 function ghview() {
-  DATA=$(gh pr list -R xola/"$(REPO_NAME)" -H "$(CURRENT_BRANCH)" -B "$(MAIN_BRANCH)" -s open --json "headRefName,title,url")
+  DATA=$(gh pr list --repo xola/"$(REPO_NAME)" --head "$(CURRENT_BRANCH)" --base "$(MAIN_BRANCH)" --state open --json "headRefName,title,url,createdAt,mergeable")
   ID=$(echo "$DATA" | jq -r ".[0].headRefName")
+  if [[ $ID == "null" ]]; then
+    echo "No PR found found for $(CURRENT_BRANCH) against xola/$(REPO_NAME)#$(MAIN_BRANCH)"
+    gh pr list -R xola/"$(REPO_NAME)" --search "$(CURRENT_BRANCH)"
+    return
+  fi
+
   TITLE=$(echo "$DATA" | jq -r ".[0].title")
   URL=$(echo "$DATA" | jq -r ".[0].url")
+  MERGE=$(echo "$DATA" | jq -r ".[0].mergeable")
+  CREATED_AT=$(echo "$DATA" | jq -r ".[0].createdAt")
   if [[ -z $ID ]]; then
     echo "PR ID not found"
+    gh pr list -R xola/"$(REPO_NAME)" --search "$(CURRENT_BRANCH)"
+    echo "'jira' to open the JIRA ticket"
+    return
   else
-    printf "Title: ${fg[green]}%s${reset_color}\nURL:   ${fg[green]}%s${reset_color}\n" "$TITLE" "$URL"
-    sleep 1
-    open "$URL"
+    JIRA_KEY=$(echo "$branch" | grep -oE '[A-Z][A-Z0-9]*-[0-9]+')
+    JIRA_URL="https://xola01.atlassian.net/browse/$JIRA_KEY"
+    printf "Title: ${fg[green]}%s${reset_color}\nURL:   ${fg[green]}%s${reset_color}\nDate:  %s\nMerge: %s\nJIRA:  ${fg[blue]}%s${reset_color}\n\n" "$TITLE" "$URL" "$CREATED_AT" "$MERGE" "$JIRA_URL"
+    noti -t "$TITLE" -m "ID: $ID"
+    if [[ $1 == "-o" ]]; then
+      open "$URL"
+    fi
+    gh run list --commit "$(git rev-parse HEAD)" -R xola/"$(REPO_NAME)"
+    if [[ -z $1 ]]; then
+      echo -e "\nAdd -o to open the PR in the browser"
+    fi
+    echo -e "Use 'jira' command to open the JIRA ticket"
   fi
+
 }
 
 function jira() {
@@ -159,9 +178,14 @@ function jira() {
     jira_url="https://xola01.atlassian.net/browse/$jira_key"
     echo -e "Opening JIRA ticket: ${jira_key} ${jira_url}"
     open "$jira_url"
+    if [[ $1 == "--pr" ]]; then
+      ghview -o
+    fi
   else
     echo "Unable to extract JIRA issue key from branch: '${branch}'"
   fi
+
+  printf "\n${fg[green]}%s${reset_color}\n" "'ghview' to open the pull request"
 }
 
 #
