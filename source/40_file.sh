@@ -38,7 +38,7 @@ alias dsstoredel="find . -name '*.DS_Store' -type f -ls -delete"
 
 # Create a new directory and enter it
 function mdcd() {
-  mkdir -p "$@" && cd "$@"
+  mkdir -p "$@" && cd "$@" || exit
 }
 
 # Show markdown files in CLI
@@ -50,7 +50,7 @@ function backup() {
     echo "Move/Renaming to ${1}.bak"
     mv "$1" "$1.bak"
   else
-    echo "Copying to ${1}.bak"
+      echo "Copying to ${1}.bak (use 'mv' in \$2 to move)"
     cp -r "$1" "$1.bak"
   fi
 }
@@ -64,7 +64,8 @@ export p="$personal" # personal is just so long to type
 export work="$HOME/Sites/work/xola"
 export x2="$HOME/Sites/work/xola/x2"
 
-## ZOXIDE (z command) https://github.com/ajeetdsouza/zoxide#installation
-if [[ $SHELL == "/bin/zsh" ]]; then
-  eval "$(zoxide init zsh)"
+if [[ -z $GIT_PREFIX ]]; then
+  if [[ $SHELL == "/bin/zsh" ]]; then
+    eval "$(zoxide init zsh)"
+  fi
 fi
