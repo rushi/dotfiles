@@ -1,0 +1,8 @@
+<application>
+  <component name="com.github.continuedev.continueintellijextension.services.ContinueExtensionSettings">
+    <option name="enableTabAutocomplete" value="true" />
+    <option name="remoteConfigServerUrl" value="http://localhost:11434" />
+    <option name="shownWelcomeDialog" value="true" />
+    <option name="userToken" value="" />
+  </component>
+</application>

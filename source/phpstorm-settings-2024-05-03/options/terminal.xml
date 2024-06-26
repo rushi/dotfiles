@@ -1,0 +1,6 @@
+<application>
+  <component name="TerminalOptionsProvider">
+    <option name="myTabName" value="Local" />
+    <option name="useOptionAsMetaKey" value="true" />
+  </component>
+</application>

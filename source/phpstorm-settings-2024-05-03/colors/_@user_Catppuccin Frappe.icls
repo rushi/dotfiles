@@ -1,0 +1,34 @@
+<scheme name="_@user_Catppuccin Frappe" version="142" parent_scheme="Darcula">
+  <option name="FONT_SCALE" value="1.0" />
+  <metaInfo>
+    <property name="created">2023-10-16T07:22:50</property>
+    <property name="ide">PhpStorm</property>
+    <property name="ideVersion">2023.2.2.0.0</property>
+    <property name="modified">2023-10-17T08:42:24</property>
+    <property name="originalScheme">Catppuccin Frappe</property>
+    <property name="partialSave">true</property>
+    <property name="pluginId">com.github.catppuccin.jetbrains</property>
+  </metaInfo>
+  <option name="CONSOLE_FONT_NAME" value="MonoLisa" />
+  <option name="CONSOLE_FONT_SIZE" value="12" />
+  <option name="CONSOLE_LINE_SPACING" value="1.3" />
+  <attributes>
+    <option name="HTML_CODE">
+      <value />
+    </option>
+    <option name="KOTLIN_FUNCTION_LITERAL_BRACES_AND_ARROW">
+      <value>
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="KOTLIN_LABEL">
+      <value />
+    </option>
+    <option name="MATCHED_BRACE_ATTRIBUTES">
+      <value>
+        <option name="BACKGROUND" value="3b514d" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+  </attributes>
+</scheme>

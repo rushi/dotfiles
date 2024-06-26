@@ -1,0 +1,31 @@
+<application>
+  <component name="DiffSettings">
+    <option name="PLACES_MAP">
+      <entry key="Default">
+        <PlaceSettings>
+          <option name="DIFF_TOOLS_ORDER">
+            <list>
+              <option value="com.intellij.diff.tools.combined.CombinedSideBySideDiffTool" />
+              <option value="com.intellij.diff.tools.combined.CombinedUnifiedDiffTool" />
+            </list>
+          </option>
+        </PlaceSettings>
+      </entry>
+    </option>
+  </component>
+  <component name="ExternalDiffSettings">
+    <option name="MIGRATE_OLD_SETTINGS" value="true" />
+  </component>
+  <component name="TextDiffSettings">
+    <option name="PLACES_MAP">
+      <entry key="Default">
+        <PlaceSettings>
+          <option name="BREADCRUMBS_PLACEMENT" value="TOP" />
+          <option name="EXPAND_BY_DEFAULT" value="false" />
+          <option name="IGNORE_POLICY" value="IGNORE_WHITESPACES_CHUNKS" />
+          <option name="SHOW_INDENT_LINES" value="true" />
+        </PlaceSettings>
+      </entry>
+    </option>
+  </component>
+</application>

@@ -1,0 +1,9 @@
+<application>
+  <component name="AbbreviationManager">
+    <abbreviations>
+      <action id="Git.Reset">
+        <abbreviation name="grhh" />
+      </action>
+    </abbreviations>
+  </component>
+</application>

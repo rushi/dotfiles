@@ -1,0 +1,7 @@
+<keymap version="1" name="VSCode (macOS) copy" parent="VSCode OSX">
+  <action id="HideActiveWindow" />
+  <action id="SelectAllOccurrences">
+    <keyboard-shortcut first-keystroke="meta f2" />
+    <keyboard-shortcut first-keystroke="ctrl meta g" />
+  </action>
+</keymap>

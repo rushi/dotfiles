@@ -1,0 +1,21 @@
+<templateSet group="React hooks">
+  <template name="useContext" value="const $value$ = useContext($Context$)" description="const value = useContext(context)" toReformat="true" toShortenFQNames="true" useStaticImport="true" deactivated="true">
+    <variable name="value" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="Context" expression="" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="useLayoutEffect" value="useLayoutEffect(() =&gt; {&#10;&#9;$END$&#10;}, []);" description="useLayoutEffect(() =&gt; {}, [])" toReformat="true" toShortenFQNames="true" useStaticImport="true" deactivated="true">
+    <context />
+  </template>
+  <template name="useReducer" value="const [$state$, $dispatch$] = useReducer($PARAMS$)" description="const [state, dispatch] = useReducer(params)" toReformat="true" toShortenFQNames="true" useStaticImport="true" deactivated="true">
+    <variable name="state" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="dispatch" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="lazyImport" value="const $name$ = lazy(() =&gt; import('$Path$'))" description="const Component = lazy(() =&gt; import('path'))" toReformat="true" toShortenFQNames="true" useStaticImport="true" deactivated="true">
+    <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="Path" expression="" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
+</templateSet>

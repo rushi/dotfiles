@@ -1,0 +1,20 @@
+<application>
+  <component name="MaterialThemeConfig">
+    <option name="compactSidebar" value="true" />
+    <option name="customListItemsSizeEnabled" value="true" />
+    <option name="isWizardShown" value="true" />
+    <option name="overrideAccentColor" value="false" />
+    <option name="pristineConfig" value="false" />
+    <option name="customSidebarHeight" value="26" />
+    <option name="customListItemsSize" value="22" />
+    <option name="settingsSelectedTab" value="1" />
+    <option name="tabsHeight" value="30" />
+    <option name="accentColor" value="ffeb3b" />
+    <option name="secondAccentColor" />
+    <option name="highlightColor" />
+    <option name="focusColor" />
+    <option name="selectedTheme" value="NATIVE" />
+    <option name="userId" value="-3f21866d:18bdb8c7956:-8000" />
+    <option name="version" value="8.13.2" />
+  </component>
+</application>
