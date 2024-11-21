@@ -1,16 +1,11 @@
 <application>
-  <component name="CodeFoldingSettings">
-    <option name="COLLAPSE_IMPORTS" value="false" />
-  </component>
-  <component name="CodeInsightSettings">
-    <option name="SHOW_FULL_SIGNATURES_IN_PARAMETER_INFO" value="true" />
-    <option name="HIGHLIGHT_SCOPE" value="true" />
-  </component>
   <component name="CodeVisionSettings">
     <option name="codeVisionGroupToPosition">
       <map>
+        <entry key="component.usage" value="Default" />
         <entry key="inheritors" value="Default" />
         <entry key="references" value="Default" />
+        <entry key="rename" value="Default" />
         <entry key="vcs.code.vision" value="Default" />
       </map>
     </option>
@@ -23,37 +18,45 @@
     </option>
   </component>
   <component name="DeclarativeInlayHintsSettings">
-    <option name="disabledOptions">
-      <set>
-        <option value="js.type.hints#function.returns" />
-        <option value="js.type.hints#non.paren.single.param" />
-        <option value="js.type.hints#parameters.in.parens" />
-        <option value="js.type.hints#variables.and.fields" />
-        <option value="ts.type.hints#function.returns" />
-        <option value="ts.type.hints#non.paren.single.param" />
-        <option value="ts.type.hints#parameters.in.parens" />
-        <option value="ts.type.hints#variables.and.fields" />
-      </set>
+    <option name="enabledOptions">
+      <map>
+        <entry key="js.type.hints#function.returns" value="false" />
+        <entry key="js.type.hints#non.paren.single.param" value="false" />
+        <entry key="js.type.hints#parameters.in.parens" value="false" />
+        <entry key="js.type.hints#variables.and.fields" value="false" />
+        <entry key="ts.type.hints#function.returns" value="false" />
+        <entry key="ts.type.hints#non.paren.single.param" value="false" />
+        <entry key="ts.type.hints#parameters.in.parens" value="false" />
+        <entry key="ts.type.hints#variables.and.fields" value="true" />
+      </map>
     </option>
     <option name="providerIdToEnabled">
       <map>
-        <entry key="js.chain.hints" value="true" />
+        <entry key="js.chain.hints" value="false" />
         <entry key="js.type.hints" value="false" />
-        <entry key="qodana.yaml.inspection.descriptions" value="true" />
-        <entry key="ts.chain.hints" value="true" />
+        <entry key="qodana.yaml.inspection.descriptions" value="false" />
+        <entry key="ts.chain.hints" value="false" />
         <entry key="ts.enum.hints" value="false" />
-        <entry key="ts.type.hints" value="true" />
+        <entry key="ts.type.hints" value="false" />
       </map>
     </option>
   </component>
   <component name="EditorSettings">
-    <option name="IS_ENSURE_NEWLINE_AT_EOF" value="true" />
-    <option name="IS_WHITESPACES_SHOWN" value="true" />
-    <option name="IS_LEADING_WHITESPACES_SHOWN" value="false" />
-    <option name="IS_INNER_WHITESPACES_SHOWN" value="false" />
-    <option name="IS_SELECTION_WHITESPACES_SHOWN" value="false" />
+    <option name="IS_FOLDING_OUTLINE_SHOWN_ONLY_ON_HOVER" value="false" />
   </component>
   <component name="InlayHintsSettings">
+    <option name="disabledHintProviderIds">
+      <set>
+        <option value="Dockerfile.docker.inlay.hints" />
+        <option value="JSON.composer.package.version.hints" />
+        <option value="Markdown.MarkdownTableInlayProviderSettingsKey" />
+        <option value="SQL.sql.column.names.inlay.hints" />
+        <option value="SQL.sql.join.cardinality.hints" />
+      </set>
+    </option>
     <option name="lastViewedProviderKeyId" value="TypeScript.ts.type.hints.function.returns" />
+  </component>
+  <component name="InlineCompletionOnboarding">
+    <option name="onboardingFinished" value="true" />
   </component>
 </application>

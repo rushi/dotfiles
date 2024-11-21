@@ -13,7 +13,7 @@ alias flushlogs='cat /dev/null > var/log/*.log;wc -l var/log/*.log'
 # run unit tests
 function xolaphpunit() {
     APP_ENV=test
-    echo 'Running vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist -v -d memory_limit=4096M "$@"'
+    echo 'Running APP_ENV=test vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist -v -d memory_limit=4096M "$@"'
     vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist -v -d memory_limit=4096M "$@"
 }
 

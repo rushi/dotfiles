@@ -1,9 +1,7 @@
 <application>
   <component name="XDebuggerSettings">
     <data-views />
-    <general>
-      <unmute-on-stop>true</unmute-on-stop>
-    </general>
+    <general />
     <debuggers>
       <debugger id="javascript">
         <configuration>

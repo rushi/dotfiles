@@ -90,7 +90,7 @@ function ghpr() {
   fi
 
   echo -e "PR to ${fg[green]}${DEST_USER}/""$(MAIN_BRANCH)" "${reset_color}on${fg[green]}" "${DEST_BRANCH}${reset_color}"
-  gh pr create -R "${DEST_USER}"/"$(REPO_NAME)" -B "${DEST_BRANCH}"
+  gh pr create -R "${DEST_USER}"/"$(REPO_NAME)" -B "${DEST_BRANCH}" --body ""
 }
 
 # add a github remote
@@ -158,7 +158,7 @@ function ghview() {
     JIRA_KEY=$(echo "$branch" | grep -oE '[A-Z][A-Z0-9]*-[0-9]+')
     JIRA_URL="https://xola01.atlassian.net/browse/$JIRA_KEY"
     printf "Title: ${fg[green]}%s${reset_color}\nURL:   ${fg[green]}%s${reset_color}\nDate:  %s\nMerge: %s\nJIRA:  ${fg[blue]}%s${reset_color}\n\n" "$TITLE" "$URL" "$CREATED_AT" "$MERGE" "$JIRA_URL"
-    noti -t "$TITLE" -m "ID: $ID"
+    # noti -t "$TITLE" -m "ID: $ID"
     if [[ $1 == "-o" ]]; then
       open "$URL"
     fi
@@ -168,7 +168,12 @@ function ghview() {
     fi
     echo -e "Use 'jira' command to open the JIRA ticket"
   fi
+}
 
+function ghact() {
+  workflow=$1
+  shift
+  gh act "$workflow" --container-architecture linux/amd64 -s GITHUB_TOKEN="$(gh auth token)" -a "$(whoami)" "$@"
 }
 
 function jira() {

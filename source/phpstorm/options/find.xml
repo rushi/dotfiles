@@ -13,9 +13,6 @@
     <mask>*.module</mask>
     <mask>*.hphp</mask>
     <mask>*.ctp</mask>
-    <mask>*.ts</mask>
     <mask>*.php</mask>
-    <mask>*.js</mask>
-    <mask>*.tsx</mask>
   </component>
 </application>

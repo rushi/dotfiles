@@ -1,8 +1,5 @@
 <application>
   <component name="LafManager">
-    <laf themeId="CopilotTheme" />
-    <lafs-to-previous-schemes>
-      <laf-to-scheme laf="Darcula" scheme="_@user_TokyoNightDark" />
-    </lafs-to-previous-schemes>
+    <laf themeId="com.github.catppuccin.mocha.jetbrains" />
   </component>
 </application>

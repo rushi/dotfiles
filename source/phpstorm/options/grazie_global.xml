@@ -1,16 +1,12 @@
 <application>
   <component name="GraziConfig">
-    <option name="userDisabledRules">
-      <set>
-        <option value="LanguageTool.EN.COMMA_COMPOUND_SENTENCE_2" />
-        <option value="LanguageTool.EN.COMMA_COMPOUND_SENTENCE" />
-      </set>
-    </option>
     <option name="suppressingContext">
       <SuppressingContext>
         <option name="suppressed">
           <set>
-            <option value="have purchase" />
+            <option value="Alignment.START" />
+            <option value="MessageType.SYSTEM" />
+            <option value="Alignment.END" />
           </set>
         </option>
       </SuppressingContext>
