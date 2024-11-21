@@ -124,12 +124,12 @@ export PATH="/opt/homebrew/opt/mongodb-community@6.0/bin:$PATH"
 export JAVA_HOME="/usr/libexec/java_home -v 17"
 export PATH="/opt/homebrew/opt/elasticsearch@6/bin:$PATH"
 
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+#if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
   # echo "\tSourcing p10k"
   # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-  source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
-fi
+#  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#  source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+#fi
 
 # bun completions
 # [ -s "/Users/rushi/.bun/_bun" ] && source "/Users/rushi/.bun/_bun"

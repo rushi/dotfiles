@@ -15,14 +15,13 @@ $hg_branch\
 $container\
 $docker_context\
 $java\
-$bun\
 $nodejs\
+$bun\
 $env_var\
 $php\
 $python\
 $ruby\
 $rust\
-$swift\
 $terraform\
 $vagrant\
 $battery\
@@ -31,11 +30,11 @@ $cmd_duration\
 $status\
 $sudo\
 $time\
+$line_break\
 $character\
 """
 
-# (@$line_break)
-
+# Inserts a blank line between shell prompts
 add_newline = true
 
 [line_break]
@@ -60,7 +59,7 @@ style = 'bold bg:red'
 disabled = false
 min_time = 2999                   # Only show time more than 3 seconds
 format = " took [$duration](red)"
-show_milliseconds = true
+show_milliseconds = false
 
 [container]
 disabled = false
@@ -128,6 +127,10 @@ detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts", "tsx", "jsx"]
 style = "cyan"
 format = ' NODE_ENV=[$env_value]($style)'
 description = 'Node JS environment defined by NODE_ENV'
+
+[bun]
+disabled = false
+symbol = "🍞 "
 
 [env_var.AWS_PROFILE]
 style = "bold yellow"
