@@ -33,9 +33,6 @@ alias cd..="cd .."
 #alias df="df -h"
 alias df="duf"
 
-# Recursively delete `.DS_Store` files
-alias dsstoredel="find . -name '*.DS_Store' -type f -ls -delete"
-
 # Create a new directory and enter it
 function mdcd() {
   mkdir -p "$@" && cd "$@" || exit
@@ -50,7 +47,7 @@ function backup() {
     echo "Move/Renaming to ${1}.bak"
     mv "$1" "$1.bak"
   else
-      echo "Copying to ${1}.bak (use 'mv' in \$2 to move)"
+    echo "Copying to ${1}.bak (use 'mv' in \$2 to move)"
     cp -r "$1" "$1.bak"
   fi
 }

@@ -101,21 +101,21 @@ eval "$(pyenv init -)"
 ##
 ## PHP 7.4 -- Enable/Disable along with 7.2 as needed
 ##
-# export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
-# export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
+export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
+
+#
+# For compilers to find php@7.4 you may need to set:
+#export LDFLAGS="-L/opt/homebrew/opt/php@7.4/lib"
+#export CPPFLAGS="-I/opt/homebrew/opt/php@7.4/include"
 
 ##
 ## PHP 7.2 -- Enable/Disable along with 7.4 as needed
 ##
-export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
-
-# For compilers to find php@7.4 you may need to set:
-#  export LDFLAGS="-L/opt/homebrew/opt/php@7.4/lib"
-#  export CPPFLAGS="-I/opt/homebrew/opt/php@7.4/include"
+#export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
+#export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
 
 # MongoDB
-#export PATH="/opt/homebrew/opt/mongodb-community-shell@4.4/bin:$PATH"
 #export PATH="/opt/homebrew/opt/mongodb-community@5.0/bin:$PATH"
 export PATH="/opt/homebrew/opt/mongodb-community@6.0/bin:$PATH"
 
@@ -125,8 +125,8 @@ export JAVA_HOME="/usr/libexec/java_home -v 17"
 export PATH="/opt/homebrew/opt/elasticsearch@6/bin:$PATH"
 
 #if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-  # echo "\tSourcing p10k"
-  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# echo "\tSourcing p10k"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #  source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 #fi
@@ -143,6 +143,7 @@ export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH" # sbin
 export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=true
 
 # source /Users/rushi/.config/broot/launcher/bash/br
+
 
 # pnpm
 export PNPM_HOME="/Users/rushi/Library/pnpm"

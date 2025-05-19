@@ -37,3 +37,5 @@ alias rni="kill $(lsof -t -i:8081); rm -rf ios/build/; react-native run-ios"
 [[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && . "$HOME/.fig/shell/bashrc.post.bash"
 
 source /Users/rushi/.config/broot/launcher/bash/br
+
+PATH=~/.console-ninja/.bin:$PATH

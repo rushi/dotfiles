@@ -48,14 +48,6 @@ function glrxm() {
   git pull --rebase xola "$(MAIN_BRANCH)"
 }
 
-function hubpr() {
-  if [[ $1 == "--help" ]]; then
-    echo "This will run ${fg[magenta]}hub pull-request -o -b xola:$(MAIN_BRANCH)${reset_color}"
-    return
-  fi
-  hub pull-request -o -b xola:"$(MAIN_BRANCH)"
-}
-
 function ghpr() {
   # // TODO: PR with flag
   if [[ $1 == "--help" ]]; then
@@ -67,7 +59,6 @@ function ghpr() {
     echo "   -t, --title string   Title for the pull request"
     echo "   -d, --draft          Mark pull request as a draft"
     echo "   -H, --head branch    The branch that contains commits for your pull request (default: current branch)"
-    echo "   -w, --web            Open the web browser to create a pull request"
     echo "   --recover string     Recover input from a failed run of create"
     return
   fi

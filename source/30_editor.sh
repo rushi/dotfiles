@@ -17,6 +17,6 @@ export VISUAL="$EDITOR"
 alias c="code ."
 alias vi="vim"
 alias cat="bat -p"
-# bat has same functionoality
+# bat has same functionality
 alias less="bat"
 export PAGER="bat -p"

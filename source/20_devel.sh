@@ -31,8 +31,9 @@ function lint() {
     if [ -f "$FILE" ]; then
         $FILE
     else
-        echo "File $FILE does not exist. Running npm run lint:fix"
-        npm run lint:fix
+        # echo "File $FILE does not exist. Running npm run lint:fix"
+        npm run --if-present lint
+        npm run --if-present typecheck
     fi
 }
 
@@ -80,13 +81,24 @@ function uikit() {
 }
 alias ui-kit="uikit"
 
+function xolaTypes() {
+    if [ ! -f "./package.json" ]; then
+        chalk -t 'Cannot install @xola/types. {red.bold ./package.json} does not exist in the current directory.'
+        return
+    fi
+
+    chalk -t 'Installing {green @xola/types} from Github packages'
+    npm install @xola/types -D --registry=https://npm.pkg.github.com --legacy-peer-deps --save-dev
+}
+alias xtypes="xolaTypes"
+
 function npm_start() {
     if [ ! -f "./package.json" ]; then
         chalk -t 'Cannot start {red.bold ./package.json} does not exist in the current directory.'
         return
     fi
 
-    npm start
+    npm start "$@"
 }
 
 function npm_dev() {
@@ -95,7 +107,7 @@ function npm_dev() {
         return
     fi
 
-    npm run dev
+    npm run dev "$@"
 }
 
 alias s="npm_start"
