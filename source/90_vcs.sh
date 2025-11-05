@@ -1,7 +1,10 @@
+#!/bin/bash
+
 #
 # Git shortcuts
 #
 alias gp='git push'
+# alias gpfl='git push --force-with-lease'
 alias gst='git status'
 alias gb='git branch'
 alias gcl='git clone'
@@ -14,15 +17,18 @@ alias glog="git log --decorate"
 alias glog2="git log --first-parent --no-merges --decorate --graph"
 alias gcalint="git commit -am '🧹 Lint'"
 alias gclint="git commit -m '🧹 Lint'"
+alias gclean="echo 'Do not use this'"
 alias hpox="hub push origin,xola"
 
 export DELTA_PAGER=less
 
 function MAIN_BRANCH() {
-  echo $(git branch -l development master main | head -1 | sed 's/^* //')
+  # shellcheck disable=SC2046 disable=SC2005
+  echo $(git branch -l development x2-development x2 main master | head -1 | sed 's/^* //')
 }
 
 function REPO_NAME() {
+  # shellcheck disable=SC2046 disable=SC2005
   echo $(basename $(git remote get-url origin) .git)
 }
 
@@ -39,27 +45,39 @@ function gcod() {
 }
 
 function glxm() {
-  echo "${fg[magenta]}Pulling from xola $(MAIN_BRANCH)${reset_color}"
-  git pull xola "$(MAIN_BRANCH)"
+  # Check if 'xola' remote exists
+  REMOTE="xola"
+  if ! git remote get-url xola &>/dev/null; then
+    REMOTE="origin"
+  fi
+  # shellcheck disable=SC2154
+  echo "${fg[magenta]}Pulling from $REMOTE $(MAIN_BRANCH)${reset_color}"
+  git pull "$REMOTE" "$(MAIN_BRANCH)"
 }
 
 function glrxm() {
-  echo "${fg[magenta]}Rebasing from xola $(MAIN_BRANCH)${reset_color}"
-  git pull --rebase xola "$(MAIN_BRANCH)"
+  # Check if 'xola' remote exists
+  REMOTE="xola"
+  if ! git remote get-url xola &>/dev/null; then
+    REMOTE="origin"
+  fi
+
+  echo "${fg[magenta]}Rebasing from $REMOTE $(MAIN_BRANCH)${reset_color}"
+  git pull --rebase "$REMOTE" "$(MAIN_BRANCH)"
 }
 
 function ghpr() {
-  # // TODO: PR with flag
-  if [[ $1 == "--help" ]]; then
-    echo "This will run ${fg[magenta]}gh pr create -R xola/$(REPO_NAME) -B $(MAIN_BRANCH)${reset_color}"
+  if [[ $1 == "--help" || $1 == "-h" ]]; then
+    # shellcheck disable=SC2154
+    echo "This will run ${fg_bold[white]}gh pr create --repo xola/$(REPO_NAME) --base $(MAIN_BRANCH)${reset_color}"
     echo -e "\nYour options:"
     echo "   \$1 The user. This should be the github username, not remote"
     echo "   \$2 The branch"
-    echo -e "\nIf you want to invoke gh directly, you can use:"
-    echo "   -t, --title string   Title for the pull request"
-    echo "   -d, --draft          Mark pull request as a draft"
-    echo "   -H, --head branch    The branch that contains commits for your pull request (default: current branch)"
-    echo "   --recover string     Recover input from a failed run of create"
+    # echo -e "\nIf you want to invoke gh directly, you can use:"
+    # echo "   -t, --title string   Title for the pull request"
+    # echo "   -d, --draft          Mark pull request as a draft"
+    # echo "   -H, --head branch    The branch that contains commits for your pull request (default: $(CURRENT_BRANCH))"
+    # echo "   --recover string     Recover input from a failed run of create"
     return
   fi
 
@@ -68,20 +86,11 @@ function ghpr() {
     return
   fi
 
-  if [[ -z $1 ]]; then
-    DEST_USER="xola"
-  else
-    DEST_USER=$1
-  fi
-
-  if [[ -z $2 ]]; then
-    DEST_BRANCH=$(MAIN_BRANCH)
-  else
-    DEST_BRANCH=$2
-  fi
+  DEST_USER="${1:-xola}"
+  DEST_BRANCH="${2:-$(MAIN_BRANCH)}"
 
   echo -e "PR to ${fg[green]}${DEST_USER}/""$(MAIN_BRANCH)" "${reset_color}on${fg[green]}" "${DEST_BRANCH}${reset_color}"
-  gh pr create -R "${DEST_USER}"/"$(REPO_NAME)" -B "${DEST_BRANCH}" --body ""
+  gh pr create -R "${DEST_USER}"/"$(REPO_NAME)" -B "${DEST_BRANCH}"
 }
 
 # add a github remote
@@ -118,46 +127,69 @@ function ghnew() {
   fi
 
   echo "Checking out $(MAIN_BRANCH)"
-  git checkout "$(MAIN_BRANCH)"
-  # Check if exit code was zero
-  if [[ $? -eq 0 ]]; then
+  if git checkout "$(MAIN_BRANCH)"; then
     echo "Pulling latest $(MAIN_BRANCH) from xola"
     git pull xola "$(MAIN_BRANCH)"
     git checkout -b "$1"
   fi
 }
 
+function getRemote() {
+  # Check if there is a 'xola' origin remote if not use 'upstream' if present, otherwise use 'origin'
+  if git remote get-url xola &>/dev/null; then
+    echo "xola"
+  elif git remote get-url upstream &>/dev/null; then
+    echo "upstream"
+  else
+    echo "origin"
+  fi
+}
+
 function ghview() {
-  DATA=$(gh pr list --repo xola/"$(REPO_NAME)" --head "$(CURRENT_BRANCH)" --base "$(MAIN_BRANCH)" --state open --json "headRefName,title,url,createdAt,mergeable")
+  # Check if there is a 'xola' origin remote if not use 'upstream' if present, otherwise use 'origin'
+  REPO_REMOTE=$(getRemote)
+  if [[ -z $REPO_REMOTE ]]; then
+    echo "No remote found. Please add a remote repository."
+    return 1
+  fi
+
+  if [[ "$REPO_REMOTE" != "origin" ]]; then
+    DATA=$(gh pr list --repo "$REPO_REMOTE"/"$(REPO_NAME)" --head "$(CURRENT_BRANCH)" --base "$(MAIN_BRANCH)" --state open --json "headRefName,title,url,createdAt,mergeable")
+  else
+    DATA=""
+  fi
   ID=$(echo "$DATA" | jq -r ".[0].headRefName")
   if [[ $ID == "null" ]]; then
-    echo "No PR found found for $(CURRENT_BRANCH) against xola/$(REPO_NAME)#$(MAIN_BRANCH)"
-    gh pr list -R xola/"$(REPO_NAME)" --search "$(CURRENT_BRANCH)"
+    echo "No PR found found for $(CURRENT_BRANCH) against $REPO_REMOTE/$(REPO_NAME)#$(MAIN_BRANCH)"
+    gh pr list -R "$REPO_REMOTE"/"$(REPO_NAME)" --search "$(CURRENT_BRANCH)"
     return
   fi
 
   TITLE=$(echo "$DATA" | jq -r ".[0].title")
   URL=$(echo "$DATA" | jq -r ".[0].url")
   MERGE=$(echo "$DATA" | jq -r ".[0].mergeable")
-  CREATED_AT=$(echo "$DATA" | jq -r ".[0].createdAt")
   if [[ -z $ID ]]; then
-    echo "PR ID not found"
-    gh pr list -R xola/"$(REPO_NAME)" --search "$(CURRENT_BRANCH)"
-    echo "'jira' to open the JIRA ticket"
+    echo "PR ID not found. Try 'gh browse'"
+    gh pr list -R "$REPO_REMOTE"/"$(REPO_NAME)" --search "$(CURRENT_BRANCH)"
     return
   else
+    branch=$(CURRENT_BRANCH)
     JIRA_KEY=$(echo "$branch" | grep -oE '[A-Z][A-Z0-9]*-[0-9]+')
     JIRA_URL="https://xola01.atlassian.net/browse/$JIRA_KEY"
-    printf "Title: ${fg[green]}%s${reset_color}\nURL:   ${fg[green]}%s${reset_color}\nDate:  %s\nMerge: %s\nJIRA:  ${fg[blue]}%s${reset_color}\n\n" "$TITLE" "$URL" "$CREATED_AT" "$MERGE" "$JIRA_URL"
-    # noti -t "$TITLE" -m "ID: $ID"
+    printf "${fg[green]}Title:${reset_color} %s\n" "$TITLE"
+    printf "${fg[green]}URL:${reset_color}   %s\n" "$URL"
+    if [[ "$MERGE" != "MERGEABLE" ]]; then
+      printf "${fg[green]}Merge:${reset_color} %s\n" "$MERGE"
+    fi
+    printf "${fg[green]}JIRA:${reset_color}  %s\n\n" "$JIRA_URL"
     if [[ $1 == "-o" ]]; then
       open "$URL"
     fi
-    gh run list --commit "$(git rev-parse HEAD)" -R xola/"$(REPO_NAME)"
+    # gh run list --commit "$(git rev-parse HEAD)" -R xola/"$(REPO_NAME)"
     if [[ -z $1 ]]; then
-      echo -e "\nAdd -o to open the PR in the browser"
+      echo "${fg[gray]}Add -o to open the PR in the browser${reset_color}"
     fi
-    echo -e "Use 'jira' command to open the JIRA ticket"
+    echo "${fg[gray]}Use 'jira' command to open the JIRA ticket${reset_color}"
   fi
 }
 
@@ -167,7 +199,7 @@ function ghact() {
   gh act "$workflow" --container-architecture linux/amd64 -s GITHUB_TOKEN="$(gh auth token)" -a "$(whoami)" "$@"
 }
 
-function jira() {
+function ticket() {
   branch=$(CURRENT_BRANCH)
   jira_key=$(echo "$branch" | grep -oE '[A-Z][A-Z0-9]*-[0-9]+')
   if [ -n "$jira_key" ]; then
@@ -181,8 +213,9 @@ function jira() {
     echo "Unable to extract JIRA issue key from branch: '${branch}'"
   fi
 
-  printf "\n${fg[green]}%s${reset_color}\n" "'ghview' to open the pull request"
+  printf "\n${fg[gray]}%s${reset_color}\n" "'ghview' to open the pull request"
 }
+alias jira="ticket"
 
 #
 # Mercurial shortcuts
