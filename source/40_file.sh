@@ -14,7 +14,7 @@ umask 022
 # alias ll='ls -al'
 # alias tree="tree -C"
 
-# eza
+# eza https://github.com/eza-community/eza
 alias l="eza -lh --octal-permissions"
 alias ls="eza"
 alias ll="eza -lh --octal-permissions"
@@ -26,7 +26,6 @@ alias lsrt="eza -lrh --sort oldest --octal-permissions "
 # Easier navigation: .., ..., -
 alias ..='cd ..'
 alias ...='cd ../..'
-alias -- -='cd -'
 alias cd..="cd .."
 
 # File size
@@ -34,7 +33,7 @@ alias cd..="cd .."
 alias df="duf"
 
 # Create a new directory and enter it
-function mdcd() {
+function mkcd() {
   mkdir -p "$@" && cd "$@" || exit
 }
 
@@ -42,6 +41,7 @@ function mdcd() {
 alias md="glow"
 
 alias bak="backup"
+alias bkp="backup"
 function backup() {
   if [[ $2 == "mv" ]]; then
     echo "Move/Renaming to ${1}.bak"
@@ -56,8 +56,6 @@ alias cls="clear"
 alias csv="csvlook" # brew install csvkit
 alias sync="rsync -ravz --progress -h"
 
-export personal="$HOME/Sites/personal"
-export p="$personal" # personal is just so long to type
 export work="$HOME/Sites/work/xola"
 export x2="$HOME/Sites/work/xola/x2"
 

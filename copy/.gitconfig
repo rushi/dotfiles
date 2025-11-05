@@ -66,12 +66,6 @@ smudge = git media smudge %f
 [help]
 autocorrect = 1
 
-[filter "lfs"]
-clean = git-lfs clean -- %f
-smudge = git-lfs smudge -- %f
-required = true
-process = git-lfs filter-process
-
 [alias]
 open = browse
 
@@ -91,6 +85,3 @@ rebase = false
 
 [push]
 autoSetupRemote = true
-
-[commit]
-template = /Users/rushi/.stCommitMsg

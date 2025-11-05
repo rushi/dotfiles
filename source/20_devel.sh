@@ -56,44 +56,6 @@ function init_npm() {
     zx ./initNodeProject.mjs
 }
 
-function uikit() {
-    if [ ! -f "./package.json" ]; then
-        chalk -t 'Cannot install UI Kit. {red.bold ./package.json} does not exist in the current directory.'
-        return
-    fi
-
-    rg --quiet workspaces package.json
-    if [[ $? -eq 0 ]]; then
-        chalk -t 'This is an {red.bold npm workspace}, you probably do not want to install UI Kit here'
-        bat package.json
-        return
-    fi
-
-    if [ -z "$1" ]; then
-        chalk -t 'Installing {green @xola/ui-kit@latest} from NPM'
-        npm install @xola/ui-kit@latest --save
-    elif [[ -n "$1" && -n "$2" ]]; then
-        # npm install https://github.com/rushi/ui-kit\#react-upgrade --save
-        chalk -t "Installing from {bold Github} {green $1/ui-kit Branch: $2}"
-        npm install "https://github.com/$1/ui-kit\#$2" --save
-    else
-        chalk -t 'Installing {green $1} from NPM'
-        npm install "$1" --save
-    fi
-}
-alias ui-kit="uikit"
-
-function xolaTypes() {
-    if [ ! -f "./package.json" ]; then
-        chalk -t 'Cannot install @xola/types. {red.bold ./package.json} does not exist in the current directory.'
-        return
-    fi
-
-    chalk -t 'Installing {green @xola/types} from Github packages'
-    npm install @xola/types -D --registry=https://npm.pkg.github.com --legacy-peer-deps --save-dev
-}
-alias xtypes="xolaTypes"
-
 function npm_start() {
     if [ ! -f "./package.json" ]; then
         chalk -t 'Cannot start {red.bold ./package.json} does not exist in the current directory.'
@@ -112,7 +74,38 @@ function npm_dev() {
     npm run dev "$@"
 }
 
+function npm_test() {
+    if [ ! -f "./package.json" ]; then
+        chalk -t 'Cannot run dev {red.bold ./package.json} does not exist in the current directory.'
+        return
+    fi
+
+    npm run test --if-present "$@"
+}
+
 alias s="npm_start"
 alias dev="npm_dev"
+alias test="npm_test"
 alias npr="npm --silent run"
 alias npmls="npm ls --depth=0"
+
+function switch_env() {
+    env=$1
+    if [ -z "$env" ]; then
+        chalk -t '{red No environment specified. Usage: switch_config <env>}'
+        return
+    fi
+
+    # Check if $env.json exists
+    if [ ! -f "./config/$env.json" ]; then
+        chalk -t "{red Config file does not exist: ./config/$env.json}"
+        return
+    fi
+
+    # Switch the environment
+    cd config || exit 0
+    ln -fs "local-$env.json" "local-development.json"
+    cat local-development.json | jq .
+    chalk -t "Switched to {green $env} environment"
+    cd ..
+}

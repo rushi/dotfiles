@@ -116,13 +116,7 @@ export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
 #export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
 
 # MongoDB
-#export PATH="/opt/homebrew/opt/mongodb-community@5.0/bin:$PATH"
 export PATH="/opt/homebrew/opt/mongodb-community@6.0/bin:$PATH"
-
-# For Elasticsearch
-# See: https://github.com/Homebrew/homebrew-core/issues/100260
-export JAVA_HOME="/usr/libexec/java_home -v 17"
-export PATH="/opt/homebrew/opt/elasticsearch@6/bin:$PATH"
 
 #if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 # echo "\tSourcing p10k"
@@ -139,11 +133,9 @@ export PATH="/opt/homebrew/opt/elasticsearch@6/bin:$PATH"
 # export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"  # bin
 export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH" # sbin
+export PATH="$HOME/.local/bin:$PATH"
 # export OPENAI_API_KEY=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
 export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=true
-
-# source /Users/rushi/.config/broot/launcher/bash/br
-
 
 # pnpm
 export PNPM_HOME="/Users/rushi/Library/pnpm"
@@ -162,3 +154,14 @@ function set_win_title() {
   echo -ne "\033]0; $(basename "$PWD") \007"
 }
 starship_precmd_user_func="set_win_title"
+
+## 1Password CLI Completion https://developer.1password.com/docs/cli/reference/commands/completion
+eval "$(op completion zsh)"; compdef _op op
+
+export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.4.0/bin/:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'; fi

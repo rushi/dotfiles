@@ -89,3 +89,8 @@ app/config/password*.yml
 # Rip Grep
 .rgignore
 
+
+**/.claude/settings.local.json
+.claude/commands/
+CLAUDE.md
+AGENTS.md

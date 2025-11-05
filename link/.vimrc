@@ -39,13 +39,6 @@ endif
 " Set vim wrapping to 72 chars when you're writing a commit message
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-" make and python use real tabs
-au FileType make                                     set noexpandtab
-au FileType python                                   set noexpandtab
-
-" Vagrantfile Thorfile, Rakefile and Gemfile are Ruby
-au BufRead,BufNewFile {Vagrantfile,Gemfile,Rakefile,Thorfile,config.ru}    set ft=ruby
-
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
