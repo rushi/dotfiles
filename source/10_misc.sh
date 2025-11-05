@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # From http://stackoverflow.com/questions/370047/#370255
 function path_remove() {

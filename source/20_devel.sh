@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export PATH
 
 alias py="python"

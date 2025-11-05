@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # IP addresses
 #alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 #alias wanip="curl -w '\n' -s --fail ifconfig.me"

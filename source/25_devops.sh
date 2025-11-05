@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function slsdeploy() {
     set -x
     npx serverless deploy --stage=$1 --env=$1 --secretsFile=config/local-$1.json
